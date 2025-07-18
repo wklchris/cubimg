@@ -1,3 +1,24 @@
+# IDE & builds
+.vscode/
+build/
+.cache
+
+.vs/
+/out
+
+# Local testing
+/test*
+!/tests/
+
+# CMake
+CMakeFiles/
+cmake_install.cmake
+CMakeSettings.json
+CTestTestfile.cmake
+
+
+# --- C++ gitignore ---
+
 # Prerequisites
 *.d
 
