@@ -4,12 +4,12 @@
 namespace cubimg::Cube {
 
 // Explicit template instantiation
-template class cubimg::Cube::Cube<2>;
-template class cubimg::Cube::Cube<3>;
-template class cubimg::Cube::Cube<4>;
-template class cubimg::Cube::Cube<5>;
-template class cubimg::Cube::Cube<6>;
-template class cubimg::Cube::Cube<7>;
+template class Cube<2>;
+template class Cube<3>;
+template class Cube<4>;
+template class Cube<5>;
+template class Cube<6>;
+template class Cube<7>;
 
 
 template<size_t N>
@@ -85,7 +85,7 @@ void Cube<N>::printCubeText() const {
     }
 
     // Print Down face (indented)
-    for (size_t row = N; row-- > 0; ) {
+    for (size_t row = 0; row < N; ++row) {
         std::cout << std::string(face_indent, ' ');
         for (size_t col = 0; col < N; ++col) {
             Face block_color = state[static_cast<size_t>(Face::Down)][row][col];
@@ -124,8 +124,8 @@ void Cube<N>::printCubeInColor() const {
         std::cout << '\n';
     }
 
-    // Print Down face (indented), in a reversing order
-    for (size_t row = N; row-- > 0; ) {
+    // Print Down face (indented, reversed rows)
+    for (size_t row = 0; row < N; ++row) {
         std::cout << std::string(face_indent, ' ');
         for (size_t col = 0; col < N; ++col) {
             Face block_color = state[static_cast<size_t>(Face::Down)][row][col];

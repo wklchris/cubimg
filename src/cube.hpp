@@ -33,8 +33,27 @@ class Cube {
     Cube state stored using Faces, representing the face's default color.
     It is a 3D array of [face][row][col].
     - face: size 6, in order of U, D, F, B, L, R.
-    - row: size N, from bottom to top of a cube face.
-    - col: size N, from left to right of a cube face.
+    - row & col: both of size N. The indexing order is shown below.
+
+    Visualization of row & col indexing of each face in net view:
+    
+    ```
+    / / / / / x 1 2 3 
+    / / / / / 1 U U U
+    / / / / / 2 U U U
+    / / / / / 3 U U U
+    / / / / / / / / /
+    x 1 2 3 - x 1 2 3 - x 1 2 3 - x 1 2 3
+    1 L L L - 1 F F F - 1 R R R - 1 B B B
+    2 L L L - 2 F F F - 2 R R R - 2 B B B
+    3 L L L - 3 F F F - 3 R R R - 3 B B B
+    / / / / / / / / /
+    / / / / / x 1 2 3
+    / / / / / 1 D D D
+    / / / / / 2 D D D
+    / / / / / 3 D D D
+    ```
+
     */ 
     using CubeState = std::array<std::array<std::array<Face, N>, N>, 6>;
 private: 
@@ -52,7 +71,7 @@ public:
     virtual ~Cube() = default;
 
     size_t order() const { return N; };
-    
+
     // Print the cube state in pure text.
     // Each block is printed with color initials (e.g. 'r' for red).
     void printCubeText() const;
