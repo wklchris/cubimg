@@ -30,7 +30,7 @@ public:
     inline static constexpr CubeColorData yellow = {
         "yellow",
         std::array{238, 242, 12, 255},
-        "\033[1;43m"
+        "\033[48;5;226m"
     };
     inline static constexpr CubeColorData red = {
         "red",
@@ -40,7 +40,7 @@ public:
     inline static constexpr CubeColorData orange = {
         "orange",
         std::array{255, 125, 7, 255},
-        "\033[48;5;214m"
+        "\033[48;5;208m"
     };
     inline static constexpr CubeColorData green = {
         "green",
