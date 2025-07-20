@@ -83,6 +83,13 @@ private:
     void rotateFw(Rotation rotation, size_t layers = 1);
     void rotateBw(Rotation rotation, size_t layers = 1);
 
+    // Rotation the M layer. Only available for 3-order cubes
+    void rotateM(Rotation rotation);
+    // Rotation the S layer. Only available for 3-order cubes
+    void rotateS(Rotation rotation);
+    // Rotation the E layer. Only available for 3-order cubes
+    void rotateE(Rotation rotation);
+
 public:
     Cube();
     virtual ~Cube() = default;
@@ -132,6 +139,20 @@ public:
     void b() { rotateBw(Rotation::Clock, N-1); };
     void bprime() { rotateBw(Rotation::CounterClock, N-1); };
     void b2() { rotateBw(Rotation::HalfTurn, N-1); };
+
+    // Single order-3 cube moves
+
+    void M() { rotateM(Rotation::Clock); };
+    void Mprime() { rotateM(Rotation::CounterClock); };
+    void M2() { rotateM(Rotation::HalfTurn); };
+
+    void S() { rotateS(Rotation::Clock); };
+    void Sprime() { rotateS(Rotation::CounterClock); };
+    void S2() { rotateS(Rotation::HalfTurn); };
+
+    void E() { rotateE(Rotation::Clock); };
+    void Eprime() { rotateE(Rotation::CounterClock); };
+    void E2() { rotateE(Rotation::HalfTurn); };
 
     // Print the cube state in pure text.
     // Each block is printed with color initials (e.g. 'r' for red).
