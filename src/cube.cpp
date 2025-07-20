@@ -63,7 +63,7 @@ void Cube<N>::rotateFace180_(Face face) {
 }
 
 template<size_t N>
-void Cube<N>::rotateRw(Rotation rotation, size_t layers) {   
+void Cube<N>::rotateRw(Rotation rotation, size_t layers) {
     FaceArray& U_arr = state[static_cast<size_t>(Face::Up)];
     FaceArray& F_arr = state[static_cast<size_t>(Face::Front)];
     FaceArray& D_arr = state[static_cast<size_t>(Face::Down)];
@@ -72,6 +72,9 @@ void Cube<N>::rotateRw(Rotation rotation, size_t layers) {
     switch(rotation) {
         case Rotation::Clock:
             rotateFace90Clock_(Face::Right);
+            if (layers == N) {
+                rotateFace90CounterClock_(Face::Left);
+            }
             for (size_t row = 0; row < N; ++row) {
                 for (size_t col = N - layers; col < N; ++col) {
                     const Face temp_face = U_arr[row][col];
@@ -84,6 +87,9 @@ void Cube<N>::rotateRw(Rotation rotation, size_t layers) {
             break;
         case Rotation::CounterClock:
             rotateFace90CounterClock_(Face::Right);
+            if (layers == N) {
+                rotateFace90Clock_(Face::Left);
+            }
             for (size_t row = 0; row < N; ++row) {
                 for (size_t col = N - layers; col < N; ++col) {
                     const Face temp_face = U_arr[row][col];
@@ -96,6 +102,9 @@ void Cube<N>::rotateRw(Rotation rotation, size_t layers) {
             break;
         case Rotation::HalfTurn:
             rotateFace180_(Face::Right);
+            if (layers == N) {
+                rotateFace180_(Face::Left);
+            }
             for (size_t row = 0; row < N; ++row) {
                 for (size_t col = N - layers; col < N; ++col) {
                     std::swap(U_arr[row][col], D_arr[row][col]);
@@ -118,6 +127,9 @@ void Cube<N>::rotateLw(Rotation rotation, size_t layers) {
     switch (rotation) {
         case Rotation::Clock:
             rotateFace90Clock_(Face::Left);
+            if (layers == N) {
+                rotateFace90CounterClock_(Face::Right);
+            }
             for (size_t row = 0; row < N; ++row) {
                 for (size_t col = 0; col < layers; ++col) {
                     const Face temp_face = U_arr[row][col];
@@ -130,6 +142,9 @@ void Cube<N>::rotateLw(Rotation rotation, size_t layers) {
             break;
         case Rotation::CounterClock:
             rotateFace90CounterClock_(Face::Left);
+            if (layers == N) {
+                rotateFace90Clock_(Face::Right);
+            }
             for (size_t row = 0; row < N; ++row) {
                 for (size_t col = 0; col < layers; ++col) {
                     const Face temp_face = U_arr[row][col];
@@ -142,6 +157,9 @@ void Cube<N>::rotateLw(Rotation rotation, size_t layers) {
             break;
         case Rotation::HalfTurn:
             rotateFace180_(Face::Left);
+            if (layers == N) {
+                rotateFace180_(Face::Right);
+            }
             for (size_t row = 0; row < N; ++row) {
                 for (size_t col = 0; col < layers; ++col) {
                     std::swap(U_arr[row][col], D_arr[row][col]);
@@ -164,6 +182,9 @@ void Cube<N>::rotateUw(Rotation rotation, size_t layers) {
     switch (rotation) {
         case Rotation::Clock:
             rotateFace90Clock_(Face::Up);
+            if (layers == N) {
+                rotateFace90CounterClock_(Face::Down);
+            }
             for (size_t row = 0; row < layers; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     const Face temp_face = F_arr[row][col];
@@ -176,6 +197,9 @@ void Cube<N>::rotateUw(Rotation rotation, size_t layers) {
             break;
         case Rotation::CounterClock:
             rotateFace90CounterClock_(Face::Up);
+            if (layers == N) {
+                rotateFace90Clock_(Face::Down);
+            }
             for (size_t row = 0; row < layers; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     const Face temp_face = F_arr[row][col];
@@ -188,6 +212,9 @@ void Cube<N>::rotateUw(Rotation rotation, size_t layers) {
             break;
         case Rotation::HalfTurn:
             rotateFace180_(Face::Up);
+            if (layers == N) {
+                rotateFace180_(Face::Down);
+            }
             for (size_t row = 0; row < layers; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     std::swap(F_arr[row][col], B_arr[row][col]);
@@ -212,6 +239,9 @@ void Cube<N>::rotateDw(Rotation rotation, size_t layers) {
     switch (rotation) {
         case Rotation::Clock:
             rotateFace90Clock_(Face::Down);
+            if (layers == N) {
+                rotateFace90CounterClock_(Face::Up);
+            }
             for (size_t row = N - layers; row < N; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     const Face temp_face = F_arr[row][col];
@@ -224,6 +254,9 @@ void Cube<N>::rotateDw(Rotation rotation, size_t layers) {
             break;
         case Rotation::CounterClock:
             rotateFace90CounterClock_(Face::Down);
+            if (layers == N) {
+                rotateFace90Clock_(Face::Up);
+            }
             for (size_t row = N - layers; row < N; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     const Face temp_face = F_arr[row][col];
@@ -236,6 +269,9 @@ void Cube<N>::rotateDw(Rotation rotation, size_t layers) {
             break;
         case Rotation::HalfTurn:
             rotateFace180_(Face::Down);
+            if (layers == N) {
+                rotateFace180_(Face::Up);
+            }
             for (size_t row = N - layers; row < N; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     std::swap(F_arr[row][col], B_arr[row][col]);
@@ -258,6 +294,9 @@ void Cube<N>::rotateFw(Rotation rotation, size_t layers) {
     switch (rotation) {
         case Rotation::Clock:
             rotateFace90Clock_(Face::Front);
+            if (layers == N) {
+                rotateFace90CounterClock_(Face::Back);
+            }
             for (size_t row = N - layers; row < N; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     const Face temp_face = U_arr[row][col];
@@ -270,6 +309,9 @@ void Cube<N>::rotateFw(Rotation rotation, size_t layers) {
             break;
         case Rotation::CounterClock:
             rotateFace90CounterClock_(Face::Front);
+            if (layers == N) {
+                rotateFace90Clock_(Face::Back);
+            }
             for (size_t row = N - layers; row < N; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     const Face temp_face = U_arr[row][col];
@@ -282,6 +324,9 @@ void Cube<N>::rotateFw(Rotation rotation, size_t layers) {
             break;
         case Rotation::HalfTurn:
             rotateFace180_(Face::Front);
+            if (layers == N) {
+                rotateFace180_(Face::Back);
+            }
             for (size_t row = N - layers; row < N; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     std::swap(U_arr[row][col], D_arr[N-1-row][N-1-col]);
@@ -304,6 +349,9 @@ void Cube<N>::rotateBw(Rotation rotation, size_t layers) {
     switch (rotation) {
         case Rotation::Clock:
             rotateFace90Clock_(Face::Back);
+            if (layers == N) {
+                rotateFace90CounterClock_(Face::Front);
+            }
             for (size_t row = 0; row < layers; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     const Face temp_face = U_arr[row][col];
@@ -316,6 +364,9 @@ void Cube<N>::rotateBw(Rotation rotation, size_t layers) {
             break;
         case Rotation::CounterClock:
             rotateFace90CounterClock_(Face::Back);
+            if (layers == N) {
+                rotateFace90Clock_(Face::Front);
+            }
             for (size_t row = 0; row < layers; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     const Face temp_face = U_arr[row][col];
@@ -328,6 +379,9 @@ void Cube<N>::rotateBw(Rotation rotation, size_t layers) {
             break;
         case Rotation::HalfTurn:
             rotateFace180_(Face::Back);
+            if (layers == N) {
+                rotateFace180_(Face::Front);
+            }
             for (size_t row = 0; row < layers; ++row) {
                 for (size_t col = 0; col < N; ++col) {
                     std::swap(U_arr[row][col], D_arr[N-1-row][N-1-col]);
@@ -472,6 +526,20 @@ void Cube<N>::rotateE(Rotation rotation) {
     }
 }
 
+template<size_t N>
+void Cube<N>::rotateX(Rotation rotation) {
+    rotateRw(rotation, N);
+}
+
+template<size_t N>
+void Cube<N>::rotateY(Rotation rotation) {
+    rotateUw(rotation, N);
+}
+
+template<size_t N>
+void Cube<N>::rotateZ(Rotation rotation) {
+    rotateFw(rotation, N);
+}
 
 template<size_t N>
 void Cube<N>::printCubeText() const {

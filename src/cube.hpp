@@ -90,12 +90,32 @@ private:
     // Rotation the E layer. Only available for 3-order cubes
     void rotateE(Rotation rotation);
 
+    // Rotate full cubes
+
+    void rotateX(Rotation rotation);
+    void rotateY(Rotation rotation);
+    void rotateZ(Rotation rotation);
+
 public:
     Cube();
     virtual ~Cube() = default;
 
     size_t order() const { return N; };
     
+    // Single whole cube rotations
+
+    void x() { rotateX(Rotation::Clock); }
+    void xprime() { rotateX(Rotation::CounterClock); }
+    void x2() { rotateX(Rotation::HalfTurn); }
+
+    void y() { rotateY(Rotation::Clock); }
+    void yprime() { rotateY(Rotation::CounterClock); }
+    void y2() { rotateY(Rotation::HalfTurn); }
+
+    void z() { rotateZ(Rotation::Clock); }
+    void zprime() { rotateZ(Rotation::CounterClock); }
+    void z2() { rotateZ(Rotation::HalfTurn); }
+
     // Single cube moves
 
     void R() { rotateRw(Rotation::Clock); };
