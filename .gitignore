@@ -16,6 +16,8 @@ cmake_install.cmake
 CMakeSettings.json
 CTestTestfile.cmake
 
+# Auto-generated files
+src/version.hpp
 
 # --- C++ gitignore ---
 

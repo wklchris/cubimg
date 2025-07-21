@@ -1,0 +1,22 @@
+#ifndef CUBIMG_VERSION_H
+#define CUBIMG_VERSION_H
+
+#include <string_view>
+
+// This file is auto-generated. Do not manually edit.
+
+namespace cubimg::Version {
+
+constexpr std::string_view app = "CubImg";
+constexpr std::string_view version = "@PROJECT_VERSION@";
+constexpr std::string_view hash = "@GIT_HASH@";
+
+constexpr std::string_view version_app = "CubImg v@PROJECT_VERSION@ [build @GIT_HASH@]";
+
+constexpr size_t version_major = @PROJECT_VERSION_MAJOR@;
+constexpr size_t version_minor = @PROJECT_VERSION_MINOR@;
+constexpr size_t version_patch = @PROJECT_VERSION_PATCH@;
+
+}
+
+#endif  // CUBIMG_VERSION_H
