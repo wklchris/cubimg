@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <vector>
 #include "color.hpp"
 
 namespace cubimg::Cube {
@@ -24,7 +25,9 @@ inline std::string faceName(Face face_) {
 
 
 enum class Rotation {
-    Clock, CounterClock, HalfTurn
+    Clock, CounterClock,
+    HalfTurn, HalfTurnReversed,
+    TripleQuarters, TripleQuartersReversed 
 };
 
 // Cube class for cubes of 2~7 order.
@@ -95,6 +98,8 @@ private:
     void rotateX(Rotation rotation);
     void rotateY(Rotation rotation);
     void rotateZ(Rotation rotation);
+
+    void applyAlgoToken(std::string_view token);
 
 public:
     Cube();
@@ -173,6 +178,9 @@ public:
     void E() { rotateE(Rotation::Clock); };
     void Eprime() { rotateE(Rotation::CounterClock); };
     void E2() { rotateE(Rotation::HalfTurn); };
+
+    // Rotate the cube according to the given algorithm steps.
+    void applyAlgo(std::string_view algo);
 
     // Print the cube state in pure text.
     // Each block is printed with color initials (e.g. 'r' for red).

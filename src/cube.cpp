@@ -1,4 +1,5 @@
 #include "cube.hpp"
+#include <cctype>
 
 namespace cubimg::Cube {
 
@@ -71,6 +72,7 @@ void Cube<N>::rotateRw(Rotation rotation, size_t layers) {
 
     switch(rotation) {
         case Rotation::Clock:
+        case Rotation::TripleQuartersReversed:
             rotateFace90Clock_(Face::Right);
             if (layers == N) {
                 rotateFace90CounterClock_(Face::Left);
@@ -86,6 +88,7 @@ void Cube<N>::rotateRw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::CounterClock:
+        case Rotation::TripleQuarters:
             rotateFace90CounterClock_(Face::Right);
             if (layers == N) {
                 rotateFace90Clock_(Face::Left);
@@ -101,6 +104,7 @@ void Cube<N>::rotateRw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::HalfTurn:
+        case Rotation::HalfTurnReversed:
             rotateFace180_(Face::Right);
             if (layers == N) {
                 rotateFace180_(Face::Left);
@@ -126,6 +130,7 @@ void Cube<N>::rotateLw(Rotation rotation, size_t layers) {
 
     switch (rotation) {
         case Rotation::Clock:
+        case Rotation::TripleQuartersReversed:
             rotateFace90Clock_(Face::Left);
             if (layers == N) {
                 rotateFace90CounterClock_(Face::Right);
@@ -141,6 +146,7 @@ void Cube<N>::rotateLw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::CounterClock:
+        case Rotation::TripleQuarters:
             rotateFace90CounterClock_(Face::Left);
             if (layers == N) {
                 rotateFace90Clock_(Face::Right);
@@ -156,6 +162,7 @@ void Cube<N>::rotateLw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::HalfTurn:
+        case Rotation::HalfTurnReversed:
             rotateFace180_(Face::Left);
             if (layers == N) {
                 rotateFace180_(Face::Right);
@@ -181,6 +188,7 @@ void Cube<N>::rotateUw(Rotation rotation, size_t layers) {
 
     switch (rotation) {
         case Rotation::Clock:
+        case Rotation::TripleQuartersReversed:
             rotateFace90Clock_(Face::Up);
             if (layers == N) {
                 rotateFace90CounterClock_(Face::Down);
@@ -196,6 +204,7 @@ void Cube<N>::rotateUw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::CounterClock:
+        case Rotation::TripleQuarters:
             rotateFace90CounterClock_(Face::Up);
             if (layers == N) {
                 rotateFace90Clock_(Face::Down);
@@ -211,6 +220,7 @@ void Cube<N>::rotateUw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::HalfTurn:
+        case Rotation::HalfTurnReversed:
             rotateFace180_(Face::Up);
             if (layers == N) {
                 rotateFace180_(Face::Down);
@@ -238,6 +248,7 @@ void Cube<N>::rotateDw(Rotation rotation, size_t layers) {
 
     switch (rotation) {
         case Rotation::Clock:
+        case Rotation::TripleQuartersReversed:
             rotateFace90Clock_(Face::Down);
             if (layers == N) {
                 rotateFace90CounterClock_(Face::Up);
@@ -253,6 +264,7 @@ void Cube<N>::rotateDw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::CounterClock:
+        case Rotation::TripleQuarters:
             rotateFace90CounterClock_(Face::Down);
             if (layers == N) {
                 rotateFace90Clock_(Face::Up);
@@ -268,6 +280,7 @@ void Cube<N>::rotateDw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::HalfTurn:
+        case Rotation::HalfTurnReversed:
             rotateFace180_(Face::Down);
             if (layers == N) {
                 rotateFace180_(Face::Up);
@@ -293,6 +306,7 @@ void Cube<N>::rotateFw(Rotation rotation, size_t layers) {
 
     switch (rotation) {
         case Rotation::Clock:
+        case Rotation::TripleQuartersReversed:
             rotateFace90Clock_(Face::Front);
             if (layers == N) {
                 rotateFace90CounterClock_(Face::Back);
@@ -308,6 +322,7 @@ void Cube<N>::rotateFw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::CounterClock:
+        case Rotation::TripleQuarters:
             rotateFace90CounterClock_(Face::Front);
             if (layers == N) {
                 rotateFace90Clock_(Face::Back);
@@ -323,6 +338,7 @@ void Cube<N>::rotateFw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::HalfTurn:
+        case Rotation::HalfTurnReversed:
             rotateFace180_(Face::Front);
             if (layers == N) {
                 rotateFace180_(Face::Back);
@@ -348,6 +364,7 @@ void Cube<N>::rotateBw(Rotation rotation, size_t layers) {
 
     switch (rotation) {
         case Rotation::Clock:
+        case Rotation::TripleQuartersReversed:
             rotateFace90Clock_(Face::Back);
             if (layers == N) {
                 rotateFace90CounterClock_(Face::Front);
@@ -363,6 +380,7 @@ void Cube<N>::rotateBw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::CounterClock:
+        case Rotation::TripleQuarters:
             rotateFace90CounterClock_(Face::Back);
             if (layers == N) {
                 rotateFace90Clock_(Face::Front);
@@ -378,6 +396,7 @@ void Cube<N>::rotateBw(Rotation rotation, size_t layers) {
             }
             break;
         case Rotation::HalfTurn:
+        case Rotation::HalfTurnReversed:
             rotateFace180_(Face::Back);
             if (layers == N) {
                 rotateFace180_(Face::Front);
@@ -410,6 +429,7 @@ void Cube<N>::rotateM(Rotation rotation) {
     const size_t col = 1;
     switch (rotation) {
         case Rotation::Clock:
+        case Rotation::TripleQuartersReversed:
             for (size_t row = 0; row < N; ++row) {
                 const Face temp_face = U_arr[row][col];
                 U_arr[row][col] = B_arr[N-1-row][N-1-col];
@@ -419,6 +439,7 @@ void Cube<N>::rotateM(Rotation rotation) {
             }
             break;
         case Rotation::CounterClock:
+        case Rotation::TripleQuarters:
             for (size_t row = 0; row < N; ++row) {
                 const Face temp_face = U_arr[row][col];
                 U_arr[row][col] = F_arr[row][col];
@@ -428,6 +449,7 @@ void Cube<N>::rotateM(Rotation rotation) {
             }
             break;
         case Rotation::HalfTurn:
+        case Rotation::HalfTurnReversed:
             for (size_t row = 0; row < N; ++row) {
                 std::swap(U_arr[row][col], D_arr[row][col]);
                 std::swap(F_arr[row][col], B_arr[N-1-row][N-1-col]);
@@ -454,6 +476,7 @@ void Cube<N>::rotateS(Rotation rotation) {
     const size_t row = 1;
     switch (rotation) {
         case Rotation::Clock:
+        case Rotation::TripleQuartersReversed:
             for (size_t col = 0; col < N; ++col) {
                 const Face temp_face = F_arr[row][col];
                 F_arr[row][col] = L_arr[row][col];
@@ -463,6 +486,7 @@ void Cube<N>::rotateS(Rotation rotation) {
             }
             break;
         case Rotation::CounterClock:
+        case Rotation::TripleQuarters:
             for (size_t col = 0; col < N; ++col) {
                 const Face temp_face = F_arr[row][col];
                 F_arr[row][col] = R_arr[row][col];
@@ -472,6 +496,7 @@ void Cube<N>::rotateS(Rotation rotation) {
             }
             break;
         case Rotation::HalfTurn:
+        case Rotation::HalfTurnReversed:
             for (size_t col = 0; col < N; ++col) {
                 std::swap(F_arr[row][col], B_arr[row][col]);
                 std::swap(L_arr[row][col], R_arr[row][col]);
@@ -498,6 +523,7 @@ void Cube<N>::rotateE(Rotation rotation) {
     const size_t row = 1;
     switch (rotation) {
         case Rotation::Clock:
+        case Rotation::TripleQuartersReversed:
             for (size_t col = 0; col < N; ++col) {
                 const Face temp_face = F_arr[row][col];
                 F_arr[row][col] = L_arr[row][col];
@@ -507,6 +533,7 @@ void Cube<N>::rotateE(Rotation rotation) {
             }
             break;
         case Rotation::CounterClock:
+        case Rotation::TripleQuarters:
             for (size_t col = 0; col < N; ++col) {
                 const Face temp_face = F_arr[row][col];
                 F_arr[row][col] = R_arr[row][col];
@@ -516,6 +543,7 @@ void Cube<N>::rotateE(Rotation rotation) {
             }
             break;
         case Rotation::HalfTurn:
+        case Rotation::HalfTurnReversed:
             for (size_t col = 0; col < N; ++col) {
                 std::swap(F_arr[row][col], B_arr[row][col]);
                 std::swap(L_arr[row][col], R_arr[row][col]);
@@ -540,6 +568,128 @@ template<size_t N>
 void Cube<N>::rotateZ(Rotation rotation) {
     rotateFw(rotation, N);
 }
+
+
+template<size_t N>
+void Cube<N>::applyAlgoToken(std::string_view token) {
+    if (token.empty()) return;
+
+    // Parse the number of layers to rotate, e.g. 2Rw
+    size_t layers = 1;
+    size_t pos = 0;
+    while (pos < token.size() && std::isdigit(token[pos])) {
+        pos++;
+    }
+    if (pos > 0) {
+        layers = std::stoi(std::string(token.substr(0, pos)));
+    }
+
+    if (pos >= token.size()) {
+        return;
+    }
+    char face = token[pos];
+    Rotation rotation = Rotation::Clock;
+
+    // Check if the rotation note is a wide rotation (e.g. Rw)
+    // or a lowercase notation (e.g. r2)
+    if ((pos + 1 < token.size() && token[pos + 1] == 'w') || 
+        std::islower(face)) {
+        if (std::islower(face)) {
+            face = std::toupper(face);
+            layers = N - 1;
+        } else {
+            // A wide rotation rotates 2 layers by default.
+            layers = layers > 2 ? layers : 2;
+            pos++;  // Skip 'w'
+        }
+    }
+
+    // Parse rotation direction
+    if (pos + 1 < token.size()) {
+        if (token[pos + 1] == '\'') {
+            if (pos + 2 < token.size()) {
+                switch (token[pos + 2]) {
+                    case '2':  // Example: R'2
+                        rotation = Rotation::HalfTurnReversed;
+                        pos += 3;
+                        break;
+                    case '3':  // Example: R'3
+                        rotation = Rotation::TripleQuartersReversed;
+                        pos += 3;
+                        break;
+                    default:  // Example: R'
+                        rotation = Rotation::CounterClock;
+                        pos += 2;
+                }
+            } else {  // If at end of token
+                rotation = Rotation::CounterClock;
+                pos += 2;
+            }
+        } else if (token[pos + 1] == '2') {  // Example: R2
+            rotation = Rotation::HalfTurn;
+            pos += 2;
+        } else if (token[pos + 1] == '3') {  // Example: R3
+            rotation = Rotation::TripleQuarters;
+            pos += 2;
+        } else {
+            pos++;
+        }
+    }
+
+    // Rotate cube layers
+    switch (face) {
+        case 'R': rotateRw(rotation, layers); break;
+        case 'L': rotateLw(rotation, layers); break;
+        case 'U': rotateUw(rotation, layers); break;
+        case 'D': rotateDw(rotation, layers); break;
+        case 'F': rotateFw(rotation, layers); break;
+        case 'B': rotateBw(rotation, layers); break;
+        case 'M': rotateM(rotation); break;
+        case 'S': rotateS(rotation); break;
+        case 'E': rotateE(rotation); break;
+        case 'x': rotateX(rotation); break;
+        case 'y': rotateY(rotation); break;
+        case 'z': rotateZ(rotation); break;
+        default:
+            break;
+    }
+}
+
+template<size_t N>
+void Cube<N>::applyAlgo(std::string_view algo) {
+    size_t start = 0;
+    size_t end = algo.find(' ');
+
+    while (start < algo.size()) {
+        // Skip spaces
+        while (start < algo.size() && std::isspace(algo[start])) {
+            start++;
+        }
+        if (start >= algo.size()) break;
+
+        // Skip round & square brackets
+        if (algo[start] == '(' || algo[start] == ')' || 
+            algo[start] == '[' || algo[start] == ']') {
+            start++;
+            continue;
+        }
+
+        // Find the current token end
+        end = algo.find(' ', start);
+        if (end == std::string_view::npos) {
+            end = algo.size();
+        }
+
+        // Apply the token rotation
+        std::string_view token = algo.substr(start, end - start);
+        if (!token.empty()) {
+            applyAlgoToken(token);
+        }
+
+        start = end + 1;
+    }
+}
+
 
 template<size_t N>
 void Cube<N>::printCubeText() const {
