@@ -19,7 +19,8 @@ int main(int argc, char* argv[]) {
     gp.setCube(cube);
     gp.draw();
 
-    gp.setOutputFormat("png");
+    gp.setKeepGpFile(true);
+    gp.setOutputFormat("pdf");
     gp.draw();
 
     return 0;

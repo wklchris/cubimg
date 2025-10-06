@@ -21,6 +21,7 @@ public:
     void setOutputFormat(const std::string& format);
     void setOutputFilename(const std::string& filename);
     void setImageSize(int w, int h = -1);
+    void setKeepGpFile(bool keep_);
     void setView(int elev, int azim);
     void setLineWidth(double lw);
     void setCubeOrder(int order);
@@ -49,7 +50,7 @@ public:
     std::string code();
     
     // Draw the cube image by calling Gnuplot from command line
-    void draw(bool keep_file=false);
+    void draw();
 
 private:
     void initializeDefaultColors();
@@ -59,11 +60,13 @@ private:
     std::string output_format = "svg";
     std::string output_filename = "test";
     std::string output_fullname = "test.svg";
+    bool keep_file = false;
+
     int width = 400;
     int height = 400;
     int elevation = 60;
     int azimuth = 120;
-    double linewidth = 2;
+    double linewidth = 3;
     int cube_order = 3;
     
     std::string cube_white;

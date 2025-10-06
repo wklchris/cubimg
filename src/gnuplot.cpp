@@ -37,6 +37,10 @@ void GpEngine::setImageSize(int w, int h) {
     height = (h == -1) ? w : h;
 }
 
+void GpEngine::setKeepGpFile(bool keep_) {
+    keep_file = keep_;
+}
+
 void GpEngine::setView(int elev, int azim) {
     elevation = elev;
     azimuth = azim;
@@ -67,7 +71,18 @@ std::string GpEngine::generateOutfilePreamble() const {
     } else if (ext == "png") {
         result = std::format(
             "set term png truecolor transparent size {}, {} linewidth {}\n",
-            width, height, linewidth);
+            width, height, linewidth
+        );
+    } else if (ext == "pdf") {
+        result = std::format(
+            "set term cairolatex pdf color transparent crop size 3in, 3in linewidth {}\n",
+            linewidth
+        );
+    } else if (ext == "tex" or ext == "tikz") {
+        result = std::format(
+            "set term tikz latex color tightboundingbox size 3in, 3in linewidth {}\n",
+            linewidth
+        );
     } else {
         std::cerr << "Unknown file format: " << output_format << std::endl;
     }
@@ -193,10 +208,10 @@ std::string GpEngine::code() {
     return gnuplot_code;
 }
 
-void GpEngine::draw(bool keep_file) {
+void GpEngine::draw() {
     std::string gnuplot_code = code();
     
-    std::string temp_filename = output_filename + ".gp";
+    std::string temp_filename = std::format("{}_{}.gp", output_filename, output_format);
     FILE* temp_file = fopen(temp_filename.c_str(), "w");
     if (!temp_file) {
         std::cerr << "Error: Could not create temporary gnuplot script." << std::endl;
