@@ -70,6 +70,11 @@ public:
         return std::format("\033[48;2;{};{};{}", arr[0], arr[1], arr[2]);
     };
 
+    // Convert RGBA number array to 6-digits RGB HEX code
+    // (only keep R, G, B; channel A dropped).
+    static const std::string rgbToHex(ColorArray arr) {
+        return std::format("#{:02X}{:02X}{:02X}", arr[0], arr[1], arr[2]);
+    };
 
     // Singleton class: Visit through instance().
     static const CubeColor& instance() {

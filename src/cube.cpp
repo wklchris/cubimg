@@ -1,5 +1,7 @@
 #include "cube.hpp"
+#include "color.hpp"
 #include <cctype>
+#include <iostream>
 
 namespace cubimg::Cube {
 
@@ -690,6 +692,21 @@ void Cube<N>::applyAlgo(std::string_view algo) {
     }
 }
 
+template<size_t N>
+std::array<int, 4> Cube<N>::getFaceColorRGBA(Face f) const {
+    return colors.at(f).rgba;
+}
+
+template<size_t N>
+std::string Cube<N>::getFaceColorHex(Face f) const {
+    auto _rgba = colors.at(f).rgba;
+    return cubimg::Color::CubeColor::rgbToHex(_rgba);
+}
+
+template<size_t N>
+std::array<std::array<Face, N>, N> Cube<N>::getFaceColorArray(Face f) const {
+    return state[static_cast<size_t>(f)];
+}
 
 template<size_t N>
 void Cube<N>::printCubeText() const {

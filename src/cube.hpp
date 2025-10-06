@@ -2,12 +2,9 @@
 #define CUBIMG_CUBE_H
 
 #include <cstddef>
-#include <algorithm>
 #include <array>
-#include <iostream>
 #include <string>
 #include <unordered_map>
-#include <vector>
 #include "color.hpp"
 
 namespace cubimg::Cube {
@@ -181,6 +178,13 @@ public:
 
     // Rotate the cube according to the given algorithm steps.
     void applyAlgo(std::string_view algo);
+    
+    // Return RGBA of the (default) color for a face
+    std::array<int, 4> getFaceColorRGBA(Face f) const;
+    // Return HEX code of the (default) color for a face
+    std::string getFaceColorHex(Face f) const;
+    // Return the color array of all blocks for a specific face
+    std::array<std::array<Face, N>, N> getFaceColorArray(Face f) const;
 
     // Print the cube state in pure text.
     // Each block is printed with color initials (e.g. 'r' for red).

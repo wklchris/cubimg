@@ -15,5 +15,12 @@ int main(int argc, char* argv[]) {
     cube.applyAlgo(argv[1]);
     cube.printCubeInColor();
 
+    cubimg::Engine::GpEngine gp("test_cube", "svg");
+    gp.setCube(cube);
+    gp.draw();
+
+    gp.setOutputFormat("png");
+    gp.draw();
+
     return 0;
 }
