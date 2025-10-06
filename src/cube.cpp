@@ -593,10 +593,12 @@ void Cube<N>::applyAlgoToken(std::string_view token) {
     Rotation rotation = Rotation::Clock;
 
     // Check if the rotation note is a wide rotation (e.g. Rw)
-    // or a lowercase notation (e.g. r2)
+    // or a lowercase, non-xyz notation (e.g. r2)
     if ((pos + 1 < token.size() && token[pos + 1] == 'w') || 
         std::islower(face)) {
-        if (std::islower(face)) {
+        if (face == 'x' || face == 'y' || face == 'z') {
+            layers = N;
+        } else if (std::islower(face)) {
             face = std::toupper(face);
             layers = N - 1;
         } else {
