@@ -2,16 +2,34 @@
 
 [CubImg](https://wklchris) is an image tool for magic cube visualization.
 
-## Build
+## Installation
 
-Build with CMake:
+CubImg relies on drawing backends to draw cube images. The primary backend is [Gnuplot](http://www.gnuplot.info).
+
+To use CubImg, users need to:
+
+1. Download and install a supported backend. Adding it to PATH environment is also recommended.
+2. Download the CubImg binary executable from the Release page of this repository. For developers, they might also be interested in [building the project](#build-and-libraries-used).
+3. Follow the command line help or the project documentation to use CubImg.
+
+## Build and Libraries Used
+
+For users who would like to compile the CubImg project, they need to configure the following libraries on your device. Many thanks to these libraries:
+
+* [CLIUtils/CLI11](https://github.com/CLIUtils/CLI11): For command line argument processing ([license](./LICENSE_CLI11)).
+
+It is recommended to build the project with CMake:
 
 ```
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
-CubImg's executable would be generated under the folder `build/src`.
+CubImg's executable would be generated under the folder `build/src`. Run it with:
+
+```
+./build/src/cubimg
+```
 
 ## LICENSE
 

@@ -53,6 +53,19 @@ public:
     // Draw the cube image by calling Gnuplot from command line
     void draw();
 
+    // Draw a whole predefined algorithm set. Default: drawAlgoSet<3>
+    template<std::size_t N = 3, typename AlgoSetContainer>
+    void drawAlgoSet(const AlgoSetContainer& algo_set) {
+        cubimg::Cube::Cube<N> cube;
+        for (const auto& [name, setup] : algo_set) {
+            cube.resetCubeState();
+            cube.applyAlgo(setup);
+            setOutputFilename(name);
+            setCube(cube);
+            draw();
+        }
+    }
+
 private:
     void initializeDefaultColors();
     void setCubeOrder(int order);

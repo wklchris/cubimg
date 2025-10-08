@@ -1,6 +1,5 @@
 #include "gnuplot.hpp"
 #include "color.hpp"
-#include <cctype>
 #include <cstdio>
 #include <format>
 #include <iostream>
@@ -61,28 +60,23 @@ void GpEngine::setCubeOrder(int order) {
 
 std::string GpEngine::generateOutfilePreamble() const {
     // Convert file extension to lower
-    std::string ext;
-    for (const char c : output_format) {
-        ext += std::tolower(c);
-    }
-
     std::string result;
-    if (ext == "svg") {
+    if (output_format == "svg") {
         result = std::format(
             "set term svg size {}, {} linewidth {}\n",
             width, height, linewidth
         );
-    } else if (ext == "png") {
+    } else if (output_format == "png") {
         result = std::format(
             "set term png truecolor transparent size {}, {} linewidth {}\n",
             width, height, linewidth
         );
-    } else if (ext == "pdf") {
+    } else if (output_format == "pdf") {
         result = std::format(
             "set term cairolatex pdf color transparent crop size 3in, 3in linewidth {}\n",
             linewidth
         );
-    } else if (ext == "tex" || ext == "tikz") {
+    } else if (output_format == "tex" || output_format == "tikz") {
         result = std::format(
             "set term tikz latex color tightboundingbox size 3in, 3in linewidth {}\n",
             linewidth
