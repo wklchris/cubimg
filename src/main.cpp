@@ -1,4 +1,5 @@
 #include <iostream>
+#include "cfop.hpp"
 #include "cubimg.hpp"
 
 int main(int argc, char* argv[]) {
@@ -9,19 +10,21 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    using cubimg::Cube::Cube;
-
-    Cube<3> cube;
-    cube.applyAlgo(argv[1]);
-    cube.printCubeInColor();
-
-    cubimg::Engine::GpEngine gp("test_cube", "svg");
-    gp.setCube(cube);
-    gp.draw();
-
-    gp.setKeepGpFile(true);
-    gp.setOutputFormat("pdf");
-    gp.draw();
+    cubimg::Cube::Cube<3> cube;
+    if (std::string(argv[1]) == "-pll") {
+        cubimg::Engine::GpEngine gp("test_cube", "png");
+        gp.setOutputDir("cfop");
+        for (const auto& [name, setup] : cubimg::CFOP::pll_setup) {
+            cube.resetCubeState();
+            cube.applyAlgo(setup);
+            gp.setOutputFilename(name);
+            gp.setCube(cube);
+            gp.draw();
+        }
+    } else {
+        cube.applyAlgo(argv[1]);
+        cube.printCubeInColor();
+    }
 
     return 0;
 }

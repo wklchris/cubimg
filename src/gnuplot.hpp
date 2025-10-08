@@ -12,23 +12,24 @@ class GpEngine {
 public:
     GpEngine();
     
-    GpEngine(const std::string& filename, const std::string& format,  
+    GpEngine(std::string_view filename, std::string_view format,  
         int w = -1, int h = -1,
         int elev = 60, int azim = 120,
         int order = 3
     );
     
-    void setOutputFormat(const std::string& format);
-    void setOutputFilename(const std::string& filename);
+    void setOutputFormat(std::string_view format);
+    void setOutputFilename(std::string_view filename);
+    void setOutputDir(std::string_view directory);
     void setImageSize(int w, int h = -1);
     void setKeepGpFile(bool keep_);
     void setView(int elev, int azim);
     void setLineWidth(double lw);
-    void setCubeOrder(int order);
     
     // Load the current cube's colors of a selected set of faces for drawing.
     template<size_t N>
     void setCube(const Cube::Cube<N>& cube) {
+        setCubeOrder(static_cast<int>(N));
         auto uColors = cube.getFaceColorArray(Cube::Face::Up);
         auto rColors = cube.getFaceColorArray(Cube::Face::Right);
         auto fColors = cube.getFaceColorArray(Cube::Face::Front);
@@ -54,11 +55,13 @@ public:
 
 private:
     void initializeDefaultColors();
+    void setCubeOrder(int order);
     // Generate the preamble for supported output file formats.
     std::string generateOutfilePreamble() const;
 
     std::string output_format = "svg";
     std::string output_filename = "test";
+    std::string output_dir = "";
     std::string output_fullname = "test.svg";
     bool keep_file = false;
 

@@ -1,6 +1,7 @@
 #ifndef CUBIMG_H
 #define CUBIMG_H
 
+#include "cfop.hpp"
 #include "color.hpp"
 #include "cube.hpp"
 #include "gnuplot.hpp"

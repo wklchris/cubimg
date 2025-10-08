@@ -11,7 +11,7 @@ GpEngine::GpEngine() {
     initializeDefaultColors();
 }
 
-GpEngine::GpEngine(const std::string& filename, const std::string& format,
+GpEngine::GpEngine(std::string_view filename, std::string_view format,
          int w, int h, int elev, int azim, int order)
     : output_filename(filename), output_format(format), 
       elevation(elev), azimuth(azim), cube_order(order) {
@@ -22,14 +22,18 @@ GpEngine::GpEngine(const std::string& filename, const std::string& format,
     initializeDefaultColors();
 }
 
-void GpEngine::setOutputFormat(const std::string& format) {
+void GpEngine::setOutputFormat(std::string_view format) {
     output_format = format;
     output_fullname = std::format("{}.{}", output_filename, output_format);
 }
 
-void GpEngine::setOutputFilename(const std::string& filename) {
+void GpEngine::setOutputFilename(std::string_view filename) {
     output_filename = filename;
     output_fullname = std::format("{}.{}", output_filename, output_format);
+}
+
+void GpEngine::setOutputDir(std::string_view directory) {
+    output_dir = directory;
 }
 
 void GpEngine::setImageSize(int w, int h) {
@@ -78,7 +82,7 @@ std::string GpEngine::generateOutfilePreamble() const {
             "set term cairolatex pdf color transparent crop size 3in, 3in linewidth {}\n",
             linewidth
         );
-    } else if (ext == "tex" or ext == "tikz") {
+    } else if (ext == "tex" || ext == "tikz") {
         result = std::format(
             "set term tikz latex color tightboundingbox size 3in, 3in linewidth {}\n",
             linewidth
@@ -86,7 +90,14 @@ std::string GpEngine::generateOutfilePreamble() const {
     } else {
         std::cerr << "Unknown file format: " << output_format << std::endl;
     }
-    result += std::format("set output '{}'\n", output_fullname);
+
+    std::string fpath_;
+    if (!output_dir.empty()) {
+        fpath_ = output_dir + "/" + output_fullname;
+    } else {
+        fpath_ = output_fullname;
+    }
+    result += std::format("set output '{}'\n", fpath_);
     return result;
 }
 
@@ -249,9 +260,9 @@ void GpEngine::initializeDefaultColors() {
     cube_black = CubeColor::rgbToHex(CubeColor::black.rgba);
     
     int total_blocks = cube_order * cube_order;
-    colorU.resize(total_blocks, cube_white);
-    colorR.resize(total_blocks, cube_red);
-    colorF.resize(total_blocks, cube_green);
+    colorU.resize(total_blocks, cube_gray);
+    colorR.resize(total_blocks, cube_gray);
+    colorF.resize(total_blocks, cube_gray);
 }
 
 }
