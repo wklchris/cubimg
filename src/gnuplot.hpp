@@ -5,6 +5,7 @@
 #include <vector>
 #include <cstdlib>
 #include "cube.hpp"
+#include "algoset.hpp"
 
 namespace cubimg::Engine {
 
@@ -53,14 +54,21 @@ public:
     // Draw the cube image by calling Gnuplot from command line
     void draw();
 
-    // Draw a whole predefined algorithm set. Default: drawAlgoSet<3>
-    template<std::size_t N = 3, typename AlgoSetContainer>
-    void drawAlgoSet(const AlgoSetContainer& algo_set) {
+    // Draw a whole predefined algorithm set. Default: drawAlgoSet<3>.
+    // It will first rotate the cube with the normal `setup` then the REVERSED `algo`.
+    template<std::size_t N = 3, typename AlgosContainer>
+    void drawAlgoSet(const AlgosContainer& algo_set) {
+        static_assert(
+            std::is_same_v<typename AlgosContainer::value_type, cubimg::ALGOSET::Algo>,
+            "AlgosContainer must contain elements of type ALGOSET::Algo."
+        );
+
         cubimg::Cube::Cube<N> cube;
-        for (const auto& [name, setup] : algo_set) {
+        for (const auto& algo_item : algo_set) {
             cube.resetCubeState();
-            cube.applyAlgo(setup);
-            setOutputFilename(name);
+            cube.applyAlgo(algo_item.setup);
+            cube.applyAlgoReverse(algo_item.algo);
+            setOutputFilename(algo_item.name);
             setCube(cube);
             draw();
         }

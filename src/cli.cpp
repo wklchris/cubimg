@@ -8,8 +8,9 @@ namespace cubimg::CLI {
 
 void setup_app(::CLI::App& app, Options& opts) {
     // Positional arg for cube algorithm
-    app.add_option("alg", opts.alg, "Space-separated algorithm to apply to the cube. Example: \"R U R' U'\"")
-        ->default_val("");
+    app.add_option("algo", opts.algo,
+        "Space-separated algorithm to apply to the cube. Example: \"R U R' U'\""
+    ) ->default_val("");
 
     // Output file arg
 

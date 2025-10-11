@@ -23,7 +23,7 @@ constexpr std::array ALLOWED_ALGO_SETS = {
 };
 
 struct Options {
-    std::string alg;
+    std::string algo;
     int order = DEFAULT_ORDER;
     bool algo_reverse = false;
     std::filesystem::path output_file;

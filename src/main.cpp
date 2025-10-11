@@ -1,3 +1,4 @@
+#include "cfop.hpp"
 #include "cubimg.hpp"
 #include <iostream>
 #include <unordered_map>
@@ -40,7 +41,7 @@ int main(int argc, char* argv[]) {
 
         // Call the drawing function based on algo set name string
         std::unordered_map<std::string, std::function<void()>> algo_set_map = {
-            {"pll", [&gp]() { gp.drawAlgoSet(cubimg::CFOP::pll_setup); }}
+            {"pll", [&gp]() { gp.drawAlgoSet(cubimg::ALGOSET::pll_algos); }}
         };
         if (auto it = algo_set_map.find(opts.algo_set);
             it != algo_set_map.end()
@@ -48,12 +49,12 @@ int main(int argc, char* argv[]) {
     }
 
     // Handle normal algorithm case
-    if (!opts.alg.empty()) {
+    if (!opts.algo.empty()) {
         auto draw_single_algo = [&](auto&& cube) {
             if (opts.algo_reverse) {
-                cube.applyAlgoReverse(opts.alg);
+                cube.applyAlgoReverse(opts.algo);
             } else {
-                cube.applyAlgo(opts.alg);
+                cube.applyAlgo(opts.algo);
             }
 
             if (!opts.output_file.empty()) {

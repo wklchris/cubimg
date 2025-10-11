@@ -1,6 +1,7 @@
 #ifndef CUBIMG_H
 #define CUBIMG_H
 
+#include "algoset.hpp"
 #include "cfop.hpp"
 #include "cli.hpp"
 #include "color.hpp"
