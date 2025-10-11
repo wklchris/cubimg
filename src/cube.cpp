@@ -469,9 +469,9 @@ void Cube<N>::rotateS(Rotation rotation) {
         return;
     }
 
-    FaceArray& F_arr = state[static_cast<size_t>(Face::Front)];
+    FaceArray& U_arr = state[static_cast<size_t>(Face::Up)];
     FaceArray& L_arr = state[static_cast<size_t>(Face::Left)];
-    FaceArray& B_arr = state[static_cast<size_t>(Face::Back)];
+    FaceArray& D_arr = state[static_cast<size_t>(Face::Down)];
     FaceArray& R_arr = state[static_cast<size_t>(Face::Right)];
 
     // Rotate middle layer S, same direction as F.
@@ -480,28 +480,28 @@ void Cube<N>::rotateS(Rotation rotation) {
         case Rotation::Clock:
         case Rotation::TripleQuartersReversed:
             for (size_t col = 0; col < N; ++col) {
-                const Face temp_face = F_arr[row][col];
-                F_arr[row][col] = L_arr[row][col];
-                L_arr[row][col] = B_arr[row][col];
-                B_arr[row][col] = R_arr[row][col];
-                R_arr[row][col] = temp_face;
+                const Face temp_face = U_arr[row][col];
+                U_arr[row][col] = L_arr[N-1-col][row];
+                L_arr[N-1-col][row] = D_arr[N-1-row][N-1-col];
+                D_arr[N-1-row][N-1-col] = R_arr[col][N-1-row];
+                R_arr[col][N-1-row] = temp_face;
             }
             break;
         case Rotation::CounterClock:
         case Rotation::TripleQuarters:
             for (size_t col = 0; col < N; ++col) {
-                const Face temp_face = F_arr[row][col];
-                F_arr[row][col] = R_arr[row][col];
-                R_arr[row][col] = B_arr[row][col];
-                B_arr[row][col] = L_arr[row][col];
-                L_arr[row][col] = temp_face;
+                const Face temp_face = U_arr[row][col];
+                U_arr[row][col] = R_arr[col][N-1-row];
+                R_arr[col][N-1-row] = D_arr[N-1-row][N-1-col];
+                D_arr[N-1-row][N-1-col] = L_arr[N-1-col][row];
+                L_arr[N-1-col][row] = temp_face;
             }
             break;
         case Rotation::HalfTurn:
         case Rotation::HalfTurnReversed:
             for (size_t col = 0; col < N; ++col) {
-                std::swap(F_arr[row][col], B_arr[row][col]);
-                std::swap(L_arr[row][col], R_arr[row][col]);
+                std::swap(U_arr[row][col], D_arr[N-1-row][N-1-col]);
+                std::swap(L_arr[N-1-col][row], R_arr[col][N-1-row]);
             }
             break;
         default:

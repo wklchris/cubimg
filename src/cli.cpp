@@ -20,7 +20,7 @@ void setup_app(::CLI::App& app, Options& opts) {
         formats_str += format_;
     }
     app.add_option("-f,--file", opts.output_file,
-        std::format("Output file path. Allowed format: {}", formats_str)
+        std::format("Output file path. If empty, print the cube (in expanded view) to screen instead. Allowed format: {}", formats_str)
     ) ->check([&formats_str](const std::string& path) {
         if (path.empty()) return std::string();
         std::filesystem::path p(path);

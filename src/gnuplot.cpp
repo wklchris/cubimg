@@ -40,7 +40,7 @@ void GpEngine::setImageSize(int w, int h) {
     height = (h == -1) ? w : h;
 }
 
-void GpEngine::setKeepGpFile(bool keep_) {
+void GpEngine::setKeepScriptFile(bool keep_) {
     keep_file = keep_;
 }
 

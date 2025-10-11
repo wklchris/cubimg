@@ -22,7 +22,7 @@ public:
     void setOutputFilename(std::string_view filename);
     void setOutputDir(std::string_view directory);
     void setImageSize(int w, int h = -1);
-    void setKeepGpFile(bool keep_);
+    void setKeepScriptFile(bool keep_);
     void setView(int elev, int azim);
     void setLineWidth(double lw);
     

@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
         gp.setImageSize(opts.width, opts.height);
         gp.setView(opts.elevation, opts.azimuth);
         gp.setLineWidth(opts.linewidth);
-        gp.setKeepGpFile(opts.keep_script);
+        gp.setKeepScriptFile(opts.keep_script);
     }
 
     // Handle algorithm set case
