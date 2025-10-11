@@ -8,7 +8,7 @@ namespace cubimg::CLI {
 
 void setup_app(::CLI::App& app, Options& opts) {
     // Positional arg for cube algorithm
-    app.add_option("alg", opts.alg, "Algorithm to apply to the cube")
+    app.add_option("alg", opts.alg, "Space-separated algorithm to apply to the cube. Example: \"R U R' U'\"")
         ->default_val("");
 
     // Output file arg
@@ -35,9 +35,14 @@ void setup_app(::CLI::App& app, Options& opts) {
     });
     
     // Cube order arg
-    app.add_option("-o,--order", opts.order, "The order of cube (2-7)")
+    app.add_option("-o,--order", opts.order, "The order of cube (cube size), range in 2 ~ 7")
         ->default_val(DEFAULT_ORDER)
         ->check(::CLI::Range(2, 7));
+    
+    // Algorithm reverse flag
+    app.add_flag("-r,--reverse-alg", opts.algo_reverse,
+        "Execute the algorithm steps in reverse. Example: R U -> U' R'"
+    );
     
     // Image size args
     app.add_option("-W,--width", opts.width, "Image width in pixels (for png/svg only)")
@@ -77,7 +82,7 @@ void setup_app(::CLI::App& app, Options& opts) {
             return std::string();
         });
 
-    // Keep script option
+    // Keep script flag
     app.add_flag("-k,--keep-script", opts.keep_script,
         "Keep the intermediate drawing script file. By default it will be deleted after execution."
     );

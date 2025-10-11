@@ -27,6 +27,27 @@ enum class Rotation {
     TripleQuarters, TripleQuartersReversed 
 };
 
+// Reverse a cube rotation (e.g., R to R')
+inline Rotation reverseRotation(Rotation rotation) {
+    using enum Rotation;
+    switch (rotation) {
+        case Clock: return CounterClock;
+        case CounterClock: return Clock;
+        case HalfTurn: return HalfTurnReversed;
+        case HalfTurnReversed: return HalfTurn;
+        case TripleQuarters: return TripleQuartersReversed;
+        case TripleQuartersReversed: return TripleQuarters;
+        default: return static_cast<Rotation>(-1);
+    }
+}
+
+struct AlgoStep {
+    // A face character is either: U,L,F,R,B,D,x,y,z,M,S,E
+    char face = '!';
+    size_t layers = 1;
+    Rotation rotation = Rotation::Clock;
+};
+
 // Cube class for cubes of 2~7 order.
 template<size_t N>
 class Cube {
@@ -96,7 +117,14 @@ private:
     void rotateY(Rotation rotation);
     void rotateZ(Rotation rotation);
 
+    // Parse single algo token to AlgoStep.
+    AlgoStep parseStepFromToken(std::string_view token);
+    void rotateStep(AlgoStep step);
+    
+    // Apply a rotation algo (e.g., R) to the cube.
     void applyAlgoToken(std::string_view token);
+    // Apply a reversed algo (e.g., apply R' when given R) to the cube.
+    void applyAlgoTokenReversed(std::string_view token);
 
 public:
     Cube();
@@ -178,6 +206,10 @@ public:
 
     // Rotate the cube according to the given algorithm steps.
     void applyAlgo(std::string_view algo);
+    // Rotate the cube according to the reverse of a given algorithm string.
+    // The "reverse" means both: (1) the order of rotation; (2) the rotation angle.
+    // E.g., the algo "R U F" will be reversed to "F' U' R'".
+    void applyAlgoReverse(std::string_view algo);
     
     // Return RGBA of the (default) color for a face
     std::array<int, 4> getFaceColorRGBA(Face f) const;

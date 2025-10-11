@@ -50,7 +50,12 @@ int main(int argc, char* argv[]) {
     // Handle normal algorithm case
     if (!opts.alg.empty()) {
         auto draw_single_algo = [&](auto&& cube) {
-            cube.applyAlgo(opts.alg);
+            if (opts.algo_reverse) {
+                cube.applyAlgoReverse(opts.alg);
+            } else {
+                cube.applyAlgo(opts.alg);
+            }
+
             if (!opts.output_file.empty()) {
                 gp.setCube(cube);
                 gp.draw();

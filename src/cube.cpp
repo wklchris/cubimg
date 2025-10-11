@@ -2,6 +2,7 @@
 #include "color.hpp"
 #include <cctype>
 #include <iostream>
+#include <vector>
 
 namespace cubimg::Cube {
 
@@ -571,10 +572,30 @@ void Cube<N>::rotateZ(Rotation rotation) {
     rotateFw(rotation, N);
 }
 
+template<size_t N>
+void Cube<N>::rotateStep(AlgoStep step) {
+    auto [face, layers, rotation] = step;
+    switch (face) {
+        case 'R': rotateRw(rotation, layers); break;
+        case 'L': rotateLw(rotation, layers); break;
+        case 'U': rotateUw(rotation, layers); break;
+        case 'D': rotateDw(rotation, layers); break;
+        case 'F': rotateFw(rotation, layers); break;
+        case 'B': rotateBw(rotation, layers); break;
+        case 'M': rotateM(rotation); break;
+        case 'S': rotateS(rotation); break;
+        case 'E': rotateE(rotation); break;
+        case 'x': rotateX(rotation); break;
+        case 'y': rotateY(rotation); break;
+        case 'z': rotateZ(rotation); break;
+        default:
+            break;
+    }
+}
 
 template<size_t N>
-void Cube<N>::applyAlgoToken(std::string_view token) {
-    if (token.empty()) return;
+AlgoStep Cube<N>::parseStepFromToken(std::string_view token) {
+    if (token.empty()) return AlgoStep{};
 
     // Parse the number of layers to rotate, e.g. 2Rw
     size_t layers = 1;
@@ -587,7 +608,7 @@ void Cube<N>::applyAlgoToken(std::string_view token) {
     }
 
     if (pos >= token.size()) {
-        return;
+        return AlgoStep{};
     }
     char face = token[pos];
     Rotation rotation = Rotation::Clock;
@@ -639,24 +660,20 @@ void Cube<N>::applyAlgoToken(std::string_view token) {
             pos++;
         }
     }
+    return AlgoStep{face, layers, rotation};
+}
 
-    // Rotate cube layers
-    switch (face) {
-        case 'R': rotateRw(rotation, layers); break;
-        case 'L': rotateLw(rotation, layers); break;
-        case 'U': rotateUw(rotation, layers); break;
-        case 'D': rotateDw(rotation, layers); break;
-        case 'F': rotateFw(rotation, layers); break;
-        case 'B': rotateBw(rotation, layers); break;
-        case 'M': rotateM(rotation); break;
-        case 'S': rotateS(rotation); break;
-        case 'E': rotateE(rotation); break;
-        case 'x': rotateX(rotation); break;
-        case 'y': rotateY(rotation); break;
-        case 'z': rotateZ(rotation); break;
-        default:
-            break;
-    }
+template<size_t N>
+void Cube<N>::applyAlgoToken(std::string_view token) {
+    AlgoStep algo_step = parseStepFromToken(token);
+    rotateStep(algo_step);
+}
+
+template<size_t N>
+void Cube<N>::applyAlgoTokenReversed(std::string_view token) {
+    AlgoStep algo_step = parseStepFromToken(token);
+    algo_step.rotation = reverseRotation(algo_step.rotation);
+    rotateStep(algo_step);
 }
 
 template<size_t N>
@@ -691,6 +708,50 @@ void Cube<N>::applyAlgo(std::string_view algo) {
         }
 
         start = end + 1;
+    }
+}
+
+template<size_t N>
+void Cube<N>::applyAlgoReverse(std::string_view algo) {
+    // This function has the exact same logic with function applyAlgo(),
+    // except that it iters from right and calls applyAlgoTokenReverse(). 
+
+    std::vector<std::string_view> tokens;
+    size_t start = 0;
+    size_t end = algo.find(' ');
+
+    while (start < algo.size()) {
+        // Skip spaces
+        while (start < algo.size() && std::isspace(algo[start])) {
+            start++;
+        }
+        if (start >= algo.size()) break;
+
+        // Skip round & square brackets
+        if (algo[start] == '(' || algo[start] == ')' || 
+            algo[start] == '[' || algo[start] == ']') {
+            start++;
+            continue;
+        }
+
+        // Find the current token end
+        end = algo.find(' ', start);
+        if (end == std::string_view::npos) {
+            end = algo.size();
+        }
+
+        // Apply the token rotation
+        std::string_view token = algo.substr(start, end - start);
+        if (!token.empty()) {
+            tokens.push_back(token);
+        }
+
+        start = end + 1;
+    }
+
+    // Iterate the token vector in a reversed order and apply reversed rotation
+    for (auto it = tokens.rbegin(); it != tokens.rend(); ++it) {
+        applyAlgoTokenReversed(*it);
     }
 }
 

@@ -3,7 +3,7 @@
 
 #include <string_view>
 
-// This file is auto-generated. Do not manually edit.
+// File version.hpp is auto-generated. Do not manually edit.
 
 namespace cubimg::Version {
 

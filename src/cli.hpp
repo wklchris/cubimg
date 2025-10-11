@@ -16,7 +16,7 @@ constexpr int DEFAULT_AZIMUTH = 120;
 constexpr double DEFAULT_LINEWIDTH = 3.0;
 
 constexpr std::array ALLOWED_FORMATS = {
-    "png", "svg", "pdf", "tex", "tikz"
+    "pdf", "png", "svg", "tex", "tikz"
 };
 constexpr std::array ALLOWED_ALGO_SETS = {
     "pll"
@@ -25,6 +25,7 @@ constexpr std::array ALLOWED_ALGO_SETS = {
 struct Options {
     std::string alg;
     int order = DEFAULT_ORDER;
+    bool algo_reverse = false;
     std::filesystem::path output_file;
     int width = DEFAULT_WIDTH;
     int height = DEFAULT_HEIGHT;
