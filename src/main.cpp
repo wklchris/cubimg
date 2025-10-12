@@ -28,6 +28,8 @@ int main(int argc, char* argv[]) {
         gp.setOutputDir(opts.output_file.parent_path().string());
         gp.setImageSize(opts.width, opts.height);
         gp.setView(opts.elevation, opts.azimuth);
+        gp.setReflection(opts.reflection);
+        gp.setReflectionDistance(opts.reflection_distance);
         gp.setLineWidth(opts.linewidth);
         gp.setKeepScriptFile(opts.keep_script);
     }

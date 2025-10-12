@@ -44,6 +44,19 @@ void GpEngine::setKeepScriptFile(bool keep_) {
     keep_file = keep_;
 }
 
+void GpEngine::setReflection(std::string_view reflect_str) {
+    for (char c : reflect_str) {
+        c = std::toupper(c);
+        if (c == 'B') show_reflection_B = true;
+        if (c == 'D') show_reflection_D = true; 
+        if (c == 'L') show_reflection_L = true;
+    }
+}
+
+void GpEngine::setReflectionDistance(double reflect_dist) {
+    reflection_distance = reflect_dist;
+}
+
 void GpEngine::setView(int elev, int azim) {
     elevation = elev;
     azimuth = azim;
@@ -119,6 +132,97 @@ std::string GpEngine::code() {
     gnuplot_code += std::format("block_width = {}\n", block_width);
     gnuplot_code += std::format("vmin = {}; vmax = {}\n\n", vmin, vmax);
     
+    // Draw the reflection, if enabled
+    if (show_reflection_D || show_reflection_L || show_reflection_B) {
+        gnuplot_code += std::format("reflect_dist = {}\n", reflection_distance);
+    }
+
+    // Reflection of D face
+    if (show_reflection_D) {
+        gnuplot_code += std::format("array colorD[{}] = [", cube_order * cube_order);
+        for (size_t i = 0; i < colorD.size(); ++i) {
+            gnuplot_code += std::format("\"{}\"", colorD[i]);
+            if (i < colorD.size() - 1) {
+                gnuplot_code += ", ";
+            }
+        }
+        gnuplot_code += "]\n";
+
+        gnuplot_code += std::format("do for [i=0:{}] {{\n", cube_order - 1);
+        gnuplot_code += std::format("    do for [j=0:{}] {{\n", cube_order - 1);
+        gnuplot_code += "        bx1 = vmin + i * block_width\n";
+        gnuplot_code += "        bx2 = bx1 + block_width\n";
+        gnuplot_code += "        by1 = vmin + j * block_width\n";
+        gnuplot_code += "        by2 = by1 + block_width\n";
+        gnuplot_code += "        bz = -vmax - reflect_dist\n\n";
+        
+        gnuplot_code += "        set object (i*" + std::to_string(cube_order) + "+j+1) polygon from bx1,by1,bz \\\n";
+        gnuplot_code += "            to bx2,by1,bz \\\n";
+        gnuplot_code += "            to bx2,by2,bz \\\n";
+        gnuplot_code += "            to bx1,by2,bz \\\n";
+        gnuplot_code += "            to bx1,by1,bz \\\n";
+        gnuplot_code += "            fc rgb colorD[(2-i)*" + std::to_string(cube_order) + "+j+1] fs solid 1.0 border lc \"gray\"\n";
+        gnuplot_code += "    }\n";
+        gnuplot_code += "}\n\n";
+    }
+    
+    // Reflection of L face
+    if (show_reflection_L) {
+        gnuplot_code += std::format("array colorL[{}] = [", cube_order * cube_order);
+        for (size_t i = 0; i < colorL.size(); ++i) {
+            gnuplot_code += std::format("\"{}\"", colorL[i]);
+            if (i < colorL.size() - 1) {
+                gnuplot_code += ", ";
+            }
+        }
+        gnuplot_code += "]\n";
+
+        gnuplot_code += std::format("do for [i=0:{}] {{\n", cube_order - 1);
+        gnuplot_code += std::format("    do for [j=0:{}] {{\n", cube_order - 1);
+        gnuplot_code += "        bx1 = vmax - i * block_width\n";
+        gnuplot_code += "        bx2 = bx1 - block_width\n";
+        gnuplot_code += "        by = -vmax - reflect_dist\n";
+        gnuplot_code += "        bz1 = vmax - j * block_width\n";
+        gnuplot_code += "        bz2 = bz1 - block_width\n\n";
+        gnuplot_code += "        set object (i+j*" + std::to_string(cube_order) + "+101) polygon from bx1,by,bz1 \\\n";
+        gnuplot_code += "            to bx2,by,bz1 \\\n";
+        gnuplot_code += "            to bx2,by,bz2 \\\n";
+        gnuplot_code += "            to bx1,by,bz2 \\\n";
+        gnuplot_code += "            to bx1,by,bz1 \\\n";
+        gnuplot_code += "            fc rgb colorL[(2-i)+j*" + std::to_string(cube_order) + "+1] fs solid 1.0 border lc \"gray\"\n";
+        gnuplot_code += "    }\n";
+        gnuplot_code += "}\n\n";
+    }
+
+    // Reflection of B face
+    if (show_reflection_B) {
+        gnuplot_code += std::format("array colorB[{}] = [", cube_order * cube_order);
+        for (size_t i = 0; i < colorB.size(); ++i) {
+            gnuplot_code += std::format("\"{}\"", colorB[i]);
+            if (i < colorB.size() - 1) {
+                gnuplot_code += ", ";
+            }
+        }
+        gnuplot_code += "]\n";
+
+        gnuplot_code += std::format("do for [i=0:{}] {{\n", cube_order - 1);
+        gnuplot_code += std::format("    do for [j=0:{}] {{\n", cube_order - 1);
+        gnuplot_code += "        bx = -vmax - reflect_dist\n";
+        gnuplot_code += "        by1 = vmin + i * block_width\n";
+        gnuplot_code += "        by2 = by1 + block_width\n";
+        gnuplot_code += "        bz1 = vmax - j * block_width\n";
+        gnuplot_code += "        bz2 = bz1 - block_width\n\n";
+        gnuplot_code += "        set object (i+j*" + std::to_string(cube_order) + "+201) polygon from bx,by1,bz1 \\\n";
+        gnuplot_code += "            to bx,by2,bz1 \\\n";
+        gnuplot_code += "            to bx,by2,bz2 \\\n";
+        gnuplot_code += "            to bx,by1,bz2 \\\n";
+        gnuplot_code += "            to bx,by1,bz1 \\\n";
+        gnuplot_code += "            fc rgb colorB[(2-i)+j*" + std::to_string(cube_order) + "+1] fs solid 1.0 border lc \"gray\"\n";
+        gnuplot_code += "    }\n";
+        gnuplot_code += "}\n\n";
+    }
+
+
     // Draw the U face
     gnuplot_code += std::format("array colorU[{}] = [", cube_order * cube_order);
     for (size_t i = 0; i < colorU.size(); ++i) {
@@ -137,7 +241,7 @@ std::string GpEngine::code() {
     gnuplot_code += "        by2 = by1 + block_width\n";
     gnuplot_code += "        bz = vmax\n\n";
     
-    gnuplot_code += "        set object (i*" + std::to_string(cube_order) + "+j+1) polygon from bx1,by1,bz \\\n";
+    gnuplot_code += "        set object (i*" + std::to_string(cube_order) + "+j+301) polygon from bx1,by1,bz \\\n";
     gnuplot_code += "            to bx2,by1,bz \\\n";
     gnuplot_code += "            to bx2,by2,bz \\\n";
     gnuplot_code += "            to bx1,by2,bz \\\n";
@@ -163,7 +267,7 @@ std::string GpEngine::code() {
     gnuplot_code += "        by = vmax\n";
     gnuplot_code += "        bz1 = vmax - j * block_width\n";
     gnuplot_code += "        bz2 = bz1 - block_width\n\n";
-    gnuplot_code += "        set object (i+j*" + std::to_string(cube_order) + "+101) polygon from bx1,by,bz1 \\\n";
+    gnuplot_code += "        set object (i+j*" + std::to_string(cube_order) + "+401) polygon from bx1,by,bz1 \\\n";
     gnuplot_code += "            to bx2,by,bz1 \\\n";
     gnuplot_code += "            to bx2,by,bz2 \\\n";
     gnuplot_code += "            to bx1,by,bz2 \\\n";
@@ -189,7 +293,7 @@ std::string GpEngine::code() {
     gnuplot_code += "        by2 = by1 + block_width\n";
     gnuplot_code += "        bz1 = vmax - j * block_width\n";
     gnuplot_code += "        bz2 = bz1 - block_width\n\n";
-    gnuplot_code += "        set object (i+j*" + std::to_string(cube_order) + "+201) polygon from bx,by1,bz1 \\\n";
+    gnuplot_code += "        set object (i+j*" + std::to_string(cube_order) + "+501) polygon from bx,by1,bz1 \\\n";
     gnuplot_code += "            to bx,by2,bz1 \\\n";
     gnuplot_code += "            to bx,by2,bz2 \\\n";
     gnuplot_code += "            to bx,by1,bz2 \\\n";

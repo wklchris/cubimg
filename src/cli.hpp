@@ -14,6 +14,7 @@ constexpr int DEFAULT_HEIGHT = 400;
 constexpr int DEFAULT_ELEVATION = 60;
 constexpr int DEFAULT_AZIMUTH = 120;
 constexpr double DEFAULT_LINEWIDTH = 3.0;
+constexpr double DEFAULT_REFLECT_DIST = 2.25;
 
 constexpr std::array ALLOWED_FORMATS = {
     "pdf", "png", "svg", "tex", "tikz"
@@ -34,6 +35,8 @@ struct Options {
     double linewidth = DEFAULT_LINEWIDTH;
     std::string algo_set;
     bool keep_script = false;
+    double reflection_distance = DEFAULT_REFLECT_DIST;
+    std::string reflection;
 };
 
 void setup_app(::CLI::App& app, Options& opts);

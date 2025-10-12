@@ -24,32 +24,32 @@ public:
 
     inline static constexpr CubeColorData white = {
         "white", 
-        std::array{255, 255, 255, 255},
+        std::array{255, 255, 255, 255},  // #FFFFFF
         "\033[1;47m"
     };
     inline static constexpr CubeColorData yellow = {
         "yellow",
-        std::array{238, 242, 12, 255},
+        std::array{238, 242, 12, 255},  // #EEF20C
         "\033[48;5;226m"
     };
     inline static constexpr CubeColorData red = {
         "red",
-        std::array{243, 41, 41, 255},
+        std::array{243, 41, 41, 255},  // #F32929
         "\033[1;41m"
     };
     inline static constexpr CubeColorData orange = {
         "orange",
-        std::array{255, 125, 7, 255},
+        std::array{255, 125, 7, 255},  // #FF7D07
         "\033[48;5;208m"
     };
     inline static constexpr CubeColorData green = {
         "green",
-        std::array{40, 197, 6, 255},
+        std::array{40, 197, 6, 255},  // #28C506
         "\033[1;42m"
     };
     inline static constexpr CubeColorData blue = {
         "blue", 
-        std::array{20, 138, 230, 255},
+        std::array{20, 138, 230, 255},  // #148AE6
         "\033[1;44m"
     };
 

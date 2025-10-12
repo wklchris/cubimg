@@ -1,6 +1,7 @@
 #include "cli.hpp"
 #include "version.hpp"
 #include <algorithm>
+#include <cctype>
 #include <format>
 #include <string>
 
@@ -41,7 +42,7 @@ void setup_app(::CLI::App& app, Options& opts) {
         ->check(::CLI::Range(2, 7));
     
     // Algorithm reverse flag
-    app.add_flag("-r,--reverse-alg", opts.algo_reverse,
+    app.add_flag("-R,--reverse-alg", opts.algo_reverse,
         "Execute the algorithm steps in reverse. Example: R U -> U' R'"
     );
     
@@ -58,9 +59,24 @@ void setup_app(::CLI::App& app, Options& opts) {
     app.add_option("-E,--elevation", opts.elevation, "View elevation angle (0-90)")
         ->default_val(DEFAULT_ELEVATION)
         ->check(::CLI::Range(0, 90));
-    app.add_option("-A,--azimuth", opts.azimuth, "View azimuth angle (0-360)")
+    app.add_option("-A,--azimuth", opts.azimuth, "View azimuth angle (90-180)")
         ->default_val(DEFAULT_AZIMUTH)
-        ->check(::CLI::Range(0, 360));
+        ->check(::CLI::Range(90, 180));
+
+    // Show reflection flag
+    app.add_option("--reflection", opts.reflection,
+        "Cube faces to draw in reflected view. Can only contains upper-/lower-case letter: B, D, and L."
+    ) ->check([](const std::string& s) {
+        std::string _msg = "Arg --reflection can only contain following upper-/lower-case letters: B, D, L";
+        if (s.size() > 3) return _msg;
+        for (char face_letter : s) {
+            char c = std::toupper(face_letter);
+            if (c != 'B' && c != 'D' && c != 'L') {
+                return _msg;
+            }
+        }
+        return std::string();
+    });
 
     // Line width option
     app.add_option("-L,--linewidth", opts.linewidth, "Line width for drawing")

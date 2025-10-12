@@ -25,22 +25,36 @@ public:
     void setImageSize(int w, int h = -1);
     void setKeepScriptFile(bool keep_);
     void setView(int elev, int azim);
+    void setReflectionDistance(double reflect_dist);
+    void setReflection(std::string_view reflect_str);
+    // void setReflectionFaceD(bool reflect_d);
+    // void setReflectionFaceB(bool reflect_b);
+    // void setReflectionFaceL(bool reflect_l);
     void setLineWidth(double lw);
     
     // Load the current cube's colors of a selected set of faces for drawing.
     template<size_t N>
     void setCube(const Cube::Cube<N>& cube) {
         setCubeOrder(static_cast<int>(N));
+        auto dColors = cube.getFaceColorArray(Cube::Face::Down);
+        auto lColors = cube.getFaceColorArray(Cube::Face::Left);
+        auto bColors = cube.getFaceColorArray(Cube::Face::Back);
         auto uColors = cube.getFaceColorArray(Cube::Face::Up);
         auto rColors = cube.getFaceColorArray(Cube::Face::Right);
         auto fColors = cube.getFaceColorArray(Cube::Face::Front);
         
+        colorD.clear();
+        colorL.clear();
+        colorB.clear();
         colorU.clear();
         colorR.clear();
         colorF.clear();
         
         for (size_t i = 0; i < N; ++i) {
             for (size_t j = 0; j < N; ++j) {
+                colorD.push_back(cube.getFaceColorHex(dColors[i][j]));
+                colorL.push_back(cube.getFaceColorHex(lColors[i][j]));
+                colorB.push_back(cube.getFaceColorHex(bColors[i][j]));
                 colorU.push_back(cube.getFaceColorHex(uColors[i][j]));
                 colorR.push_back(cube.getFaceColorHex(rColors[i][j]));
                 colorF.push_back(cube.getFaceColorHex(fColors[i][j]));
@@ -85,6 +99,11 @@ private:
     std::string output_dir = "";
     std::string output_fullname = "test.svg";
     bool keep_file = false;
+    
+    double reflection_distance = 2.25;
+    bool show_reflection_D = false;
+    bool show_reflection_L = false;
+    bool show_reflection_B = false;
 
     int width = 400;
     int height = 400;
@@ -103,6 +122,9 @@ private:
     std::string cube_gray;
     std::string cube_black;
 
+    std::vector<std::string> colorD;
+    std::vector<std::string> colorL;
+    std::vector<std::string> colorB;
     std::vector<std::string> colorU;
     std::vector<std::string> colorR;
     std::vector<std::string> colorF;
