@@ -161,7 +161,9 @@ std::string GpEngine::code() {
         gnuplot_code += "            to bx2,by2,bz \\\n";
         gnuplot_code += "            to bx1,by2,bz \\\n";
         gnuplot_code += "            to bx1,by1,bz \\\n";
-        gnuplot_code += "            fc rgb colorD[(2-i)*" + std::to_string(cube_order) + "+j+1] fs solid 1.0 border lc \"gray\"\n";
+        gnuplot_code += std::format(
+            "            fc rgb colorD[({}-i)*{}+j+1] fs solid 1.0 border lc \"gray\"\n", cube_order-1, cube_order
+        );
         gnuplot_code += "    }\n";
         gnuplot_code += "}\n\n";
     }
@@ -189,7 +191,10 @@ std::string GpEngine::code() {
         gnuplot_code += "            to bx2,by,bz2 \\\n";
         gnuplot_code += "            to bx1,by,bz2 \\\n";
         gnuplot_code += "            to bx1,by,bz1 \\\n";
-        gnuplot_code += "            fc rgb colorL[(2-i)+j*" + std::to_string(cube_order) + "+1] fs solid 1.0 border lc \"gray\"\n";
+        gnuplot_code += std::format(
+            "            fc rgb colorL[({}-i)+j*{}+1] fs solid 1.0 border lc \"gray\"\n",
+            cube_order-1, cube_order
+        );
         gnuplot_code += "    }\n";
         gnuplot_code += "}\n\n";
     }
@@ -217,7 +222,10 @@ std::string GpEngine::code() {
         gnuplot_code += "            to bx,by2,bz2 \\\n";
         gnuplot_code += "            to bx,by1,bz2 \\\n";
         gnuplot_code += "            to bx,by1,bz1 \\\n";
-        gnuplot_code += "            fc rgb colorB[(2-i)+j*" + std::to_string(cube_order) + "+1] fs solid 1.0 border lc \"gray\"\n";
+        gnuplot_code += std::format(
+            "            fc rgb colorB[({}-i)+j*{}+1] fs solid 1.0 border lc \"gray\"\n",
+            cube_order-1, cube_order
+        );
         gnuplot_code += "    }\n";
         gnuplot_code += "}\n\n";
     }
