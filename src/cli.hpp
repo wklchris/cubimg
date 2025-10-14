@@ -19,6 +19,8 @@ constexpr double DEFAULT_LINEWIDTH = 3.0;
 constexpr double DEFAULT_REFLECT_DIST = 2.25;
 constexpr std::string_view DEFAULT_COLORS_UFR = "white,green,red";
 
+constexpr std::string_view DEFAULT_ENGINE_PATH = "gnuplot";
+
 constexpr std::array ALLOWED_FORMATS = {
     "pdf", "png", "svg", "tex", "tikz"
 };
@@ -32,6 +34,7 @@ std::string trimSpaces(const std::string& s);
 std::vector<std::string> splitAndTrimSpaces(const std::string& s, char sep);
 
 struct Options {
+    std::string engine_path;
     std::string algo;
     int order = DEFAULT_ORDER;
     bool algo_reverse = false;

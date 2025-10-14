@@ -33,6 +33,17 @@ void setup_app(::CLI::App& app, Options& opts) {
         "Space-separated algorithm to apply to the cube. Example: \"R U R' U'\""
     ) ->default_val("");
 
+    // Engine arg
+
+    app.add_option("--engine,--engine-path", opts.engine_path, 
+        "Executable path of the engine. If the engine has been added to the PATH environment, you can use the engine name instead of full path. Example: \"C:/gnuplot/gnuplot.exe\""
+    ) -> default_val(DEFAULT_ENGINE_PATH);
+
+    // Algorithm reverse flag
+    app.add_flag("-R,--reverse-alg", opts.algo_reverse,
+        "Execute the algorithm steps in reverse. Example: R U -> U' R'"
+    );
+
     // Output file arg
 
     // Concatenate the allowed format string
@@ -74,11 +85,6 @@ void setup_app(::CLI::App& app, Options& opts) {
         }
         return std::string();
     });
-    
-    // Algorithm reverse flag
-    app.add_flag("-R,--reverse-alg", opts.algo_reverse,
-        "Execute the algorithm steps in reverse. Example: R U -> U' R'"
-    );
     
     // Image size args
     app.add_option("-W,--width", opts.width, "Image width in pixels (for png/svg only)")

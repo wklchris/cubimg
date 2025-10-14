@@ -21,6 +21,10 @@ GpEngine::GpEngine(std::string_view filename, std::string_view format,
     initializeDefaultColors();
 }
 
+void GpEngine::setEnginePath(std::filesystem::path fpath) {
+    engine_path = fpath.make_preferred().string();
+}
+
 void GpEngine::setOutputFormat(std::string_view format) {
     output_format = format;
     output_fullname = std::format("{}.{}", output_filename, output_format);
@@ -337,7 +341,7 @@ void GpEngine::draw() {
     fwrite(gnuplot_code.c_str(), 1, gnuplot_code.size(), temp_file);
     fclose(temp_file);
     
-    std::string command = "gnuplot " + temp_filename;
+    std::string command = std::format("\"{}\" {}", engine_path, temp_filename);
     int result = std::system(command.c_str());
     if (result != 0) {
         std::cerr << "Error: Gnuplot execution failed." << std::endl;

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <filesystem>
 #include "cube.hpp"
 #include "algoset.hpp"
 
@@ -19,6 +20,7 @@ public:
         int order = 3
     );
     
+    void setEnginePath(std::filesystem::path fpath);
     void setOutputFormat(std::string_view format);
     void setOutputFilename(std::string_view filename);
     void setOutputDir(std::string_view directory);
@@ -27,9 +29,6 @@ public:
     void setView(int elev, int azim);
     void setReflectionDistance(double reflect_dist);
     void setReflection(std::string_view reflect_str);
-    // void setReflectionFaceD(bool reflect_d);
-    // void setReflectionFaceB(bool reflect_b);
-    // void setReflectionFaceL(bool reflect_l);
     void setLineWidth(double lw);
     
     // Load the current cube's colors of a selected set of faces for drawing.
@@ -94,6 +93,7 @@ private:
     // Generate the preamble for supported output file formats.
     std::string generateOutfilePreamble() const;
 
+    std::string engine_path = "gnuplot";
     std::string output_format = "svg";
     std::string output_filename = "test";
     std::string output_dir = "";

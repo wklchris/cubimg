@@ -27,6 +27,7 @@ int main(int argc, char* argv[]) {
             opts.output_file.stem().string(),
             opts.output_file.extension().string().substr(1)
         );
+        gp.setEnginePath(opts.engine_path);
         gp.setOutputDir(opts.output_file.parent_path().string());
         gp.setImageSize(opts.width, opts.height);
         gp.setView(opts.elevation, opts.azimuth);
