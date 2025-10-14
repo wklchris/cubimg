@@ -3,6 +3,8 @@
 
 #include "CLI/CLI.hpp"
 #include <array>
+#include <string>
+#include <vector>
 #include <filesystem>
 
 namespace cubimg::CLI {
@@ -15,6 +17,7 @@ constexpr int DEFAULT_ELEVATION = 60;
 constexpr int DEFAULT_AZIMUTH = 120;
 constexpr double DEFAULT_LINEWIDTH = 3.0;
 constexpr double DEFAULT_REFLECT_DIST = 2.25;
+constexpr std::string_view DEFAULT_COLORS_UFR = "white,green,red";
 
 constexpr std::array ALLOWED_FORMATS = {
     "pdf", "png", "svg", "tex", "tikz"
@@ -22,6 +25,11 @@ constexpr std::array ALLOWED_FORMATS = {
 constexpr std::array ALLOWED_ALGO_SETS = {
     "pll"
 };
+
+// Trim leading & trailing spaces around a string.
+std::string trimSpaces(const std::string& s);
+// Split a string using given separator character and trim spaces around each item.
+std::vector<std::string> splitAndTrimSpaces(const std::string& s, char sep);
 
 struct Options {
     std::string algo;
@@ -37,6 +45,7 @@ struct Options {
     bool keep_script = false;
     double reflection_distance = DEFAULT_REFLECT_DIST;
     std::string reflection;
+    std::string colors_UFR;
 };
 
 void setup_app(::CLI::App& app, Options& opts);

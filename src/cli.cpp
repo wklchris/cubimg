@@ -4,8 +4,28 @@
 #include <cctype>
 #include <format>
 #include <string>
+#include <ranges>
 
 namespace cubimg::CLI {
+
+std::string trimSpaces(const std::string& s) {
+    auto left = std::find_if_not(s.begin(), s.end(), 
+        [](unsigned char c) { return std::isspace(c); }
+    );
+    auto right = std::find_if_not(s.rbegin(), s.rend(), 
+        [](unsigned char c) { return std::isspace(c); }
+    ).base();
+    return (left < right) ? std::string(left, right) : std::string();
+}
+
+std::vector<std::string> splitAndTrimSpaces(const std::string& s, char sep) {
+    std::vector<std::string> result;
+    auto split_view = s | std::views::split(sep);
+    for (const auto& item : split_view) {
+        result.push_back(trimSpaces(std::string(item.begin(), item.end())));
+    }
+    return result;
+}
 
 void setup_app(::CLI::App& app, Options& opts) {
     // Positional arg for cube algorithm
@@ -40,6 +60,20 @@ void setup_app(::CLI::App& app, Options& opts) {
     app.add_option("-o,--order", opts.order, "The order of cube (cube size), range in 2 ~ 7")
         ->default_val(DEFAULT_ORDER)
         ->check(::CLI::Range(2, 7));
+    // Cube URF color arg
+    app.add_option("-I,--color-UFR,--color-init", opts.colors_UFR, 
+        "Comma-separated color names on faces U, F, and R. "
+        "Useful for cubers who don't use yellow-cross. "
+        "Allowed names: yellow, white, red, orange, green, blue."
+    ) ->default_val(DEFAULT_COLORS_UFR)
+        ->check([](const std::string& s){
+        if (std::count(s.begin(), s.end(), ',') != 2) {
+            return std::string("Separate the three colors of U, F, R faces with commas. " 
+                "Example: \"yellow,red,green\""
+            );
+        }
+        return std::string();
+    });
     
     // Algorithm reverse flag
     app.add_flag("-R,--reverse-alg", opts.algo_reverse,

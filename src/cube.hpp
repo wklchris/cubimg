@@ -211,6 +211,13 @@ public:
     // E.g., the algo "R U F" will be reversed to "F' U' R'".
     void applyAlgoReverse(std::string_view algo);
     
+    // Set cube's default face colors by giving color names of faces U,F,R.
+    void setUFRColors(
+        std::string_view U_color_name,
+        std::string_view F_color_name,
+        std::string_view R_color_name
+    );
+
     // Return RGBA of the (default) color for a face
     std::array<int, 4> getFaceColorRGBA(Face f) const;
     // Return HEX code of the (default) color for a face

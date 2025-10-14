@@ -2,6 +2,7 @@
 #include "color.hpp"
 #include <cctype>
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 
 namespace cubimg::Cube {
@@ -21,16 +22,7 @@ template class Cube<7>;
 template<size_t N>
 Cube<N>::Cube() {
     resetCubeState();
-
-    const auto& CubeColor = cubimg::Color::CubeColor::instance();
-    colors = {
-        {Face::Up,    CubeColor.white},
-        {Face::Down,  CubeColor.yellow},
-        {Face::Front, CubeColor.green},
-        {Face::Back,  CubeColor.blue},
-        {Face::Left,  CubeColor.orange},
-        {Face::Right, CubeColor.red}
-    };
+    setUFRColors("white", "green", "red");
 }
 
 template<size_t N>
@@ -753,6 +745,32 @@ void Cube<N>::applyAlgoReverse(std::string_view algo) {
     for (auto it = tokens.rbegin(); it != tokens.rend(); ++it) {
         applyAlgoTokenReversed(*it);
     }
+}
+
+template<size_t N>
+void Cube<N>::setUFRColors(
+    std::string_view U_color_name,
+    std::string_view F_color_name,
+    std::string_view R_color_name
+) {
+    using cubimg::Color::CubeColorData;
+    const auto& CubeColor = cubimg::Color::CubeColor::instance();
+
+    if (CubeColor.isOppositeColorNames(U_color_name, F_color_name) ||
+        CubeColor.isOppositeColorNames(U_color_name, R_color_name) ||
+        CubeColor.isOppositeColorNames(F_color_name, R_color_name)
+    ) {
+        throw std::invalid_argument("Face U, F, and R cannot contain opposite color pairs (red-orange, green-blue, yellow-white).");
+    }
+
+    colors = {
+        {Face::Up,    CubeColor.getColor(U_color_name)},
+        {Face::Down,  CubeColor.getOppositeColor(U_color_name)},
+        {Face::Front, CubeColor.getColor(F_color_name)},
+        {Face::Back,  CubeColor.getOppositeColor(F_color_name)},
+        {Face::Right, CubeColor.getColor(R_color_name)},
+        {Face::Left,  CubeColor.getOppositeColor(R_color_name)}
+    };
 }
 
 template<size_t N>

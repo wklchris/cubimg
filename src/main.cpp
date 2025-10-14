@@ -1,6 +1,8 @@
 #include "cfop.hpp"
+#include "cli.hpp"
 #include "cubimg.hpp"
 #include <iostream>
+#include <stdexcept>
 #include <unordered_map>
 #include <functional>
 
@@ -51,33 +53,43 @@ int main(int argc, char* argv[]) {
     }
 
     // Handle normal algorithm case
-    if (!opts.algo.empty()) {
-        auto draw_single_algo = [&](auto&& cube) {
-            if (opts.algo_reverse) {
-                cube.applyAlgoReverse(opts.algo);
-            } else {
-                cube.applyAlgo(opts.algo);
-            }
+    try {
+        if (!opts.algo.empty()) {
+            const auto ufr_vector = cubimg::CLI::splitAndTrimSpaces(opts.colors_UFR, ',');
+            auto draw_single_algo = [&](auto&& cube) {
+                // Setup the cube
+                cube.setUFRColors(ufr_vector[0], ufr_vector[1], ufr_vector[2]);
 
-            if (!opts.output_file.empty()) {
-                gp.setCube(cube);
-                gp.draw();
-            } else {
-                cube.printCubeInColor();
-            }
-        };
+                // Apply algorithm
+                if (opts.algo_reverse) {
+                    cube.applyAlgoReverse(opts.algo);
+                } else {
+                    cube.applyAlgo(opts.algo);
+                }
 
-        switch (opts.order) {
-            case 2: draw_single_algo(cubimg::Cube::Cube<2>{}); break;
-            case 3: draw_single_algo(cubimg::Cube::Cube<3>{}); break;
-            case 4: draw_single_algo(cubimg::Cube::Cube<4>{}); break;
-            case 5: draw_single_algo(cubimg::Cube::Cube<5>{}); break;
-            case 6: draw_single_algo(cubimg::Cube::Cube<6>{}); break;
-            case 7: draw_single_algo(cubimg::Cube::Cube<7>{}); break;
-            default:
-                std::cerr << "Error: Unsupported cube order " << opts.order << std::endl;
-                return 1;
+                // Output to console or file
+                if (!opts.output_file.empty()) {
+                    gp.setCube(cube);
+                    gp.draw();
+                } else {
+                    cube.printCubeInColor();
+                }
+            };
+
+            switch (opts.order) {
+                case 2: draw_single_algo(cubimg::Cube::Cube<2>{}); break;
+                case 3: draw_single_algo(cubimg::Cube::Cube<3>{}); break;
+                case 4: draw_single_algo(cubimg::Cube::Cube<4>{}); break;
+                case 5: draw_single_algo(cubimg::Cube::Cube<5>{}); break;
+                case 6: draw_single_algo(cubimg::Cube::Cube<6>{}); break;
+                case 7: draw_single_algo(cubimg::Cube::Cube<7>{}); break;
+                default:
+                    std::cerr << "Error: Unsupported cube order " << opts.order << std::endl;
+                    return 1;
+            }
         }
+    } catch (std::invalid_argument& e) {
+        std::cerr << "Invalid argument: " << e.what() << std::endl;
     }
 
     return 0;
