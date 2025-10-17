@@ -25,7 +25,7 @@ constexpr std::array ALLOWED_FORMATS = {
     "pdf", "png", "svg", "tex", "tikz"
 };
 constexpr std::array ALLOWED_ALGO_SETS = {
-    "pll"
+    "pll", "oll", "f2l"
 };
 
 // Trim leading & trailing spaces around a string.

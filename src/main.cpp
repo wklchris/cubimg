@@ -46,7 +46,9 @@ int main(int argc, char* argv[]) {
 
         // Call the drawing function based on algo set name string
         std::unordered_map<std::string, std::function<void()>> algo_set_map = {
-            {"pll", [&gp]() { gp.drawAlgoSet(cubimg::ALGOSET::pll_algos); }}
+            {"pll", [&gp]() { gp.drawAlgoSet(cubimg::ALGOSET::pll_algos); }},
+            {"oll", [&gp]() { gp.drawAlgoSet(cubimg::ALGOSET::oll_algos); }},
+            {"f2l", [&gp]() { gp.drawAlgoSet(cubimg::ALGOSET::f2l_algos); }}
         };
         if (auto it = algo_set_map.find(opts.algo_set);
             it != algo_set_map.end()

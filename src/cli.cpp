@@ -131,7 +131,7 @@ void setup_app(::CLI::App& app, Options& opts) {
         algo_set_str += set_;
     }
     app.add_option("-s,--algo-set", opts.algo_set,
-        std::format("Batch drawing a pre-defined set of algorithms: {}", algo_set_str)
+        std::format("Batch drawing a pre-defined set of algorithms. Allowed sets: {}", algo_set_str)
     ) ->check([&algo_set_str](const std::string& set) {
             if (std::ranges::find(ALLOWED_ALGO_SETS, set) == ALLOWED_ALGO_SETS.end()) {
                 return std::format("Algorithm set must be one of: {}", algo_set_str);
