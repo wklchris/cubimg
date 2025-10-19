@@ -1,0 +1,100 @@
+:root {
+    --sidebar-width: 15em;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    padding-left: var(--sidebar-width);
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+h1, h2, h3, h4, h5, h6 { padding-left: 1rem; }
+
+section.main {
+    max-width: calc(100vw - var(--sidebar-width));
+    margin: 0 auto;
+    padding-left: 1.5em;
+    padding-right: 1em;
+}
+
+/* Sidebar Navigation */
+
+nav.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: #e8e8e8;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    overflow-y: auto;
+}
+
+div.sidebar-builder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Tahoma, sans-serif;
+    text-align: center;
+    margin: 0.75em 0;
+}
+img.repo-icon {
+    display: inline;
+    height: 1.5em;
+    margin: auto 0.5em;
+}
+
+p.sidebar-title {
+    font-size: large;
+    margin: 0.5em 0;
+}
+
+nav.sidebar hr {
+    height: 1.5px;
+    border: none;
+    background-color: black;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+ul.sidebar-list { padding-left: 1.5em; }
+li.current-doc { font-weight: bold; }
+ul.current-doc-list {
+    padding-left: 1em;
+}
+
+/* Table */
+
+table, th, td {
+    border: 2px solid darkgray;
+}
+
+table.algo-table {
+    margin: 2em auto;
+    border-collapse: collapse;
+    max-width: 80em;
+}
+table.algo-table col.algo-image { width: 10em; }
+table.algo-table col.algo-name { width: 5em; }
+table.algo-table col.algo-subcategory { width: 5em; }
+
+tr.category-head {
+    text-align: left;
+}
+tr.category-head th { padding: 0.5em; }
+
+td.algo {
+    text-align: left;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+td.algo-image, td.algo-name, td.algo-subcategory {
+    text-align: center;
+}
+td.algo-subcategory { font-style: italic; }
+
+
+img.algo { width: 100%; }

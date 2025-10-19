@@ -88,7 +88,7 @@ constexpr std::array<Algo, 57> oll_algos = {{
     {"OLL-54", "(r U R' U) (R U' R' U)(R U2' r')"},
     // Small L with dot
     {"OLL-9", "(R U R' U') R' F (R2 U R' U') F'"},
-    {"OLL-10", "(R U R' U)(R' F R F')(R U2' R')"},
+    {"OLL-10", "(R U R' U) (R' F R F') (R U2' R')"},
     // Small Z with dot (awkward)
     {"OLL-29", "(R U R' U') (R U' R') (F' U' F) (R U R')"},
     {"OLL-30", "F U (R U2 R' U') (R U2 R' U') F'"},
@@ -99,7 +99,7 @@ constexpr std::array<Algo, 57> oll_algos = {{
     {"OLL-2", "F (R U R' U') F' f (R U R' U') f'"},
     {"OLL-3", "f (R U R' U') f' U' F (R U R' U') F'"},
     {"OLL-4", "f (R U R' U') f' U F (R U R' U') F'"},
-    {"OLL-17", "(R U R' U)(R' F R F') U2 (R' F R F')"},
+    {"OLL-17", "(R U R' U) (R' F R F') U2 (R' F R F')"},
     {"OLL-18", "R U2' (R2' F R F') U2 M' (U R U' r')"},
     {"OLL-19", "r' R U (R U R' U') M' (R' F R F')"},
     {"OLL-20", "r' R U (R U R' U') M2' (U R U' r')"}

@@ -1,0 +1,120 @@
+sets,name,category,algorithm,subcategory
+PLL,PLL-Ua,Edges only,M2' U M U2 M' U M2',
+PLL,PLL-Ub,Edges only,M2' U' M U2 M' U' M2,
+PLL,PLL-H,Edges only,M2' U M2' U2 M2' U M2',
+PLL,PLL-Z,Edges only,(M2' U M2' U) (M' U2 M2' U2) M' [U2],
+PLL,PLL-Aa,Corners only,x' R2 D2' (R' U' R) D2' (R' U R'),
+PLL,PLL-Ab,Corners only,x' (R U' R) D2 (R' U R) D2 R2',
+PLL,PLL-E,Corners only,x' (R U' R' D) (R U R' D') (R U R' D) (R U' R' D'),
+PLL,PLL-T,2 edges 2 corners,(R U R' U') R' F (R2 U' R' U') (R U R' F'),
+PLL,PLL-F,2 edges 2 corners,(R' U' F') (R U R' U') R' F (R2 U' R' U') (R U R' U R),
+PLL,PLL-V,2 edges 2 corners,(R' U R' U') (R D' R' D) (R' U D') R2 U' R2 D R2,
+PLL,PLL-Y,2 edges 2 corners,F (R U' R' U') (R U R' F') (R U R' U') (R' F R F'),
+PLL,PLL-Ja,2 edges 2 corners,(l2' U) (l F' R) U2' (r' U r) U2',
+PLL,PLL-Jb,2 edges 2 corners,(R U R' F') (R U R' U') R' F R2 U' R' [U'],
+PLL,PLL-Ra,2 edges 2 corners,(R U' R' U') (R U R D) (R' U' R D') R' U2 R' U,
+PLL,PLL-Rb,2 edges 2 corners,(R' U2 R U2') R' F (R U R' U') R' F' R2 [U']),
+PLL,PLL-Na,2 edges 2 corners,(R U R' U) (R U R' F') (R U R' U') R' F (R2 U' R') U2 (R U' R'),
+PLL,PLL-Nb,2 edges 2 corners,(R' U R U') (R' F' U' F) (R U R' F) (R' F' R U' R),
+PLL,PLL-Ga,3 edges 3 corners,(R2 U R' U) (R' U' R U') R2 U' D (R' U R) D' [U],
+PLL,PLL-Gb,3 edges 3 corners,(R' U' R U D') R2 U (R' U R U' R U') R2 D,
+PLL,PLL-Gc,3 edges 3 corners,(R2' U' R U') (R U R' U) R2 (U D') (R U' R') D [U'],
+PLL,PLL-Gd,3 edges 3 corners,(R U R' U' D) (R2 U' R U') (R' U R' U R2) D' [U],
+F2L,F2L-1,Standard,U (R U' R'),RF
+F2L,F2L-2,Standard,y' U' (R' U R),RF
+F2L,F2L-3,Standard,y' (R' U' R),RF
+F2L,F2L-4,Standard,(R U R'),RF
+F2L,F2L-5,Edge F and Corner F,U' (R U R') U2 (R U' R'),RF
+F2L,F2L-7,Edge F and Corner F,U' (R U2' R') U2 (R U' R'),RF
+F2L,F2L-15,Edge F and Corner F,(R U R') U2 (R U' R' U) (R U' R'),RF
+F2L,F2L-10,Edge F and Corner R,U' (R U R' U) (R U R'),RF
+F2L,F2L-12,Edge F and Corner R,(R U' R' U) (R U' R' U2) (R U' R'),RF
+F2L,F2L-14,Edge F and Corner R,U' (R U' R' U) (R U R'),RF
+F2L,F2L-19,Edge F and Corner D,U (R U2' R') U (R U' R'),RF
+F2L,F2L-21,Edge F and Corner D,U2 (R U R' U) (R U' R'),RF
+F2L,F2L-23,Edge F and Corner D,U (R U' R' U') (R U' R' U) (R U' R'),RF
+F2L,F2L-17,Edge F and Corner D,(R U2 R') U' (R U R'),RF
+F2L,F2L-8,Edge R and Corner R,d (R' U2 R) U2' (R' U R),RF
+F2L,F2L-6,Edge R and Corner R,d (R' U' R) U2' (R' U R),RF
+F2L,F2L-16,Edge R and Corner R,(R U' R') U2 y' (R' U' R),RF
+F2L,F2L-9,Edge R and Corner F,d (R' U' R U') (R' U' R),RF
+F2L,F2L-13,Edge R and Corner F,d (R' U R U') (R' U' R),RF
+F2L,F2L-11,Edge R and Corner F,U' (R U2' R') d (R' U' R),RF
+F2L,F2L-22,Edge R and Corner D,y' U2 (R' U' R) U' (R' U R),RF
+F2L,F2L-20,Edge R and Corner D,y' U' (R' U2 R) U' (R' U R),RF
+F2L,F2L-18,Edge R and Corner D,y' (R' U2' R) U (R' U' R),RF
+F2L,F2L-24,Edge R and Corner D,U' R U (R2' F R F') (R U' R'),RF
+F2L,F2L-30,Corner in slot and Edge F,(R U R' U') (R U R'),RF
+F2L,F2L-27,Corner in slot and Edge F,(R U' R' U) (R U' R'),RF
+F2L,F2L-25,Corner in slot and Edge F,U' (R' F R F') (R U R'),RF
+F2L,F2L-28,Corner in slot and Edge R,y' (R' U R U') (R' U R),RF
+F2L,F2L-29,Corner in slot and Edge R,y' (R' U' R U) (R' U' R),RF
+F2L,F2L-26,Corner in slot and Edge R,U (R U' R') (F R' F' R),RF
+F2L,F2L-33,Edge in slot and correct,U' (R U' R') U2 (R U' R'),RF
+F2L,F2L-34,Edge in slot and correct,U (R U R') U2 (R U R'),RF
+F2L,F2L-32,Edge in slot and correct,(U R U' R') (U R U' R') (U R U' R'),RF
+F2L,F2L-35,Edge in slot but wrong,U2 (R U R') (F R' F' R),RF
+F2L,F2L-36,Edge in slot but wrong,U (F' U' F) U' (R U R'),RF
+F2L,F2L-31,Edge in slot but wrong,U' (R' F R F') (R U' R'),RF
+F2L,F2L-39,Both edge and corner in slot,(R U' R' U) (R U2 R' U) (R U' R'),RF
+F2L,F2L-38,Both edge and corner in slot,(R U R' U') R U2 R' U' (R U R'),RF
+F2L,F2L-41,Both edge and corner in slot,(R U R') U' (R U' R') U2 y' (R' U' R),RF
+F2L,F2L-40,Both edge and corner in slot,(R U' R') U' (R U' R') d (R' U' R),RF
+F2L,F2L-37,Both edge and corner in slot,R2' U2' (F R2 F') U2 (R' U R'),RF
+OLL,OLL-21,Cross,R U (R' U R U') R' U (R U2' R'),
+OLL,OLL-22,Cross,R U2' (R2' U' R2 U') (R2' U2' R),
+OLL,OLL-23,Cross,R2 D (R' U2 R) D' (R' U2 R'),
+OLL,OLL-24,Cross,(r U R' U') (r' F R F'),
+OLL,OLL-25,Cross,F' (r U R' U') r' F R,
+OLL,OLL-26,Cross,R U2 R' U' R U' R',
+OLL,OLL-27,Cross,R U R' U R U2' R',
+OLL,OLL-28,Flip 2 edges,(r U R' U') R (r' U R U' R'),
+OLL,OLL-57,Flip 2 edges,(R U R' U') M' (U R U' r'),
+OLL,OLL-5,Square,r' U2 (R U R' U) r,
+OLL,OLL-6,Square,r U2 (R' U' R U') r',
+OLL,OLL-35,Square with dot,R U2' (R2' F R F') (R U2' R'),
+OLL,OLL-37,Square with dot,F (R U' R' U') (R U R' F'),
+OLL,OLL-33,T shape,(R U R' U') (R' F R F'),
+OLL,OLL-45,T shape,F (R U R' U') F',
+OLL,OLL-31,P shape,(R' U' F) (U R U' R') F' R,
+OLL,OLL-32,P shape,R U B' (U' R' U) (l U l'),
+OLL,OLL-43,P shape,R' U' F' U F R,
+OLL,OLL-44,P shape,f (R U R' U') f',
+OLL,OLL-34,C shape,(R U R2' U') (R' F R U) R U' F',
+OLL,OLL-46,C shape,R' U' (R' F R F') U R,
+OLL,OLL-36,W shape,(L' U' L U') (L' U L U) (r U' r' F),
+OLL,OLL-38,W shape,(R U R' U) (R U' R' U') (R' F R F'),
+OLL,OLL-51,I shape (line),f (R U R' U') (R U R' U') f',
+OLL,OLL-52,I shape (line),(R' F' U' F) U' (R U R' U R),
+OLL,OLL-55,I shape (line),(R U2' R2') (U' R U' R') U2' (F R F'),
+OLL,OLL-56,I shape (line),(r U r') (U R U' R') (U R U' R') (r U' r'),
+OLL,OLL-13,Big L shape,r U' r' (U' r U r') (F' U F),
+OLL,OLL-14,Big L shape,R' F R (U R' F' R) (F U' F'),
+OLL,OLL-15,Big L shape,(r' U' r) (R' U' R U) (r' U r),
+OLL,OLL-16,Big L shape,(r U r') (R U R' U') (r U' r'),
+OLL,OLL-47,Small L shape,R' U' l' (U R U' R') (U R U' B) l,
+OLL,OLL-48,Small L shape,F (R U R' U') (R U R' U') F',
+OLL,OLL-49,Small L shape,r U' r2' U r2 U r2' U' r,
+OLL,OLL-50,Small L shape,r' U r2 U' r2' U' r2 U r',
+OLL,OLL-53,Small L shape,(r' U' R U') (R' U R U') (R' U2 r),
+OLL,OLL-54,Small L shape,(r U R' U) (R U' R' U)(R U2' r'),
+OLL,OLL-9,Small L with dot,(R U R' U') R' F (R2 U R' U') F',
+OLL,OLL-10,Small L with dot,(R U R' U) (R' F R F') (R U2' R'),
+OLL,OLL-39,Big Z shape,L F' (L' U' L U) F U' L',
+OLL,OLL-40,Big Z shape,R' F (R U R' U') F' U R,
+OLL,OLL-7,Small Z shape,r U (R' U R U2') r',
+OLL,OLL-8,Small Z shape,r' U' (R U' R' U2) r,
+OLL,OLL-11,Small Z shape,r' (R2 U R' U R) U2' (R' U M'),
+OLL,OLL-12,Small Z shape,M' (R' U' R U' R' U2 R U') r' R,
+OLL,OLL-29,Small Z with dot (awkward),(R U R' U') (R U' R') (F' U' F) (R U R'),
+OLL,OLL-30,Small Z with dot (awkward),F U (R U2 R' U') (R U2 R' U') F',
+OLL,OLL-41,Small Z with dot (awkward),(R U R' U R U2') R' F (R U R' U') F',
+OLL,OLL-42,Small Z with dot (awkward),(F R' F' R) U2 (R' U' R2 U') (R2' U2' R),
+OLL,OLL-1,Dot shape,(R U2') (R2' F R F') U2' (R' F R F'),
+OLL,OLL-2,Dot shape,F (R U R' U') F' f (R U R' U') f',
+OLL,OLL-3,Dot shape,f (R U R' U') f' U' F (R U R' U') F',
+OLL,OLL-4,Dot shape,f (R U R' U') f' U F (R U R' U') F',
+OLL,OLL-17,Dot shape,(R U R' U) (R' F R F') U2 (R' F R F'),
+OLL,OLL-18,Dot shape,R U2' (R2' F R F') U2 M' (U R U' r'),
+OLL,OLL-19,Dot shape,r' R U (R U R' U') M' (R' F R F'),
+OLL,OLL-20,Dot shape,r' R U (R U R' U') M2' (U R U' r'),
