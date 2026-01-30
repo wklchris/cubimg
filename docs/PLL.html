@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"><title>PLL</title>
+<link rel="stylesheet" type="text/css" href="doc.css"></head>
+<body>
+<nav class="sidebar">
+<div class="sidebar-builder">Plot with <img class="repo-icon" src="img/icon.svg"><a href="https://github.com/wklchris/cubimg">CubImg</a></div>
+<hr>
+<p class="sidebar-title">Contents</p>
+<ul class="sidebar-list">
+<li><a href="F2L.html">F2L</a></li>
+<li><a href="OLL.html">OLL</a></li>
+<li class="current-doc">PLL</li>
+<ul class="current-doc-list">
+<li><a href="#Edges-only">Edges only</a></li>
+<li><a href="#Corners-only">Corners only</a></li>
+<li><a href="#2-edges-2-corners">2 edges 2 corners</a></li>
+<li><a href="#3-edges-3-corners">3 edges 3 corners</a></li>
+</ul>
+</ul>
+</nav>
+</nav>
+<section class="main">
+<h1>PLL</h1>
+<table class="algo-table">
+<colgroup>
+<col class="algo-image">
+<col class="algo-name">
+<col class="algo">
+</colgroup>
+<tr class="category-head"><th id="Edges-only" colspan="3">Edges only</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Ua.png" alt="PLL-Ua"></td>
+<td class="algo-name">PLL-Ua</td>
+<td class="algo"><code class="algo">M2&#39; U M U2 M&#39; U M2&#39;</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Ub.png" alt="PLL-Ub"></td>
+<td class="algo-name">PLL-Ub</td>
+<td class="algo"><code class="algo">M2&#39; U&#39; M U2 M&#39; U&#39; M2</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-H.png" alt="PLL-H"></td>
+<td class="algo-name">PLL-H</td>
+<td class="algo"><code class="algo">M2&#39; U M2&#39; U2 M2&#39; U M2&#39;</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Z.png" alt="PLL-Z"></td>
+<td class="algo-name">PLL-Z</td>
+<td class="algo"><code class="algo">(M2&#39; U M2&#39; U) (M&#39; U2 M2&#39; U2) M&#39; [U2]</code></td>
+</tr>
+<tr class="category-head"><th id="Corners-only" colspan="3">Corners only</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Aa.png" alt="PLL-Aa"></td>
+<td class="algo-name">PLL-Aa</td>
+<td class="algo"><code class="algo">x&#39; R2 D2&#39; (R&#39; U&#39; R) D2&#39; (R&#39; U R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Ab.png" alt="PLL-Ab"></td>
+<td class="algo-name">PLL-Ab</td>
+<td class="algo"><code class="algo">x&#39; (R U&#39; R) D2 (R&#39; U R) D2 R2&#39;</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-E.png" alt="PLL-E"></td>
+<td class="algo-name">PLL-E</td>
+<td class="algo"><code class="algo">x&#39; (R U&#39; R&#39; D) (R U R&#39; D&#39;) (R U R&#39; D) (R U&#39; R&#39; D&#39;)</code></td>
+</tr>
+<tr class="category-head"><th id="2-edges-2-corners" colspan="3">2 edges 2 corners</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-T.png" alt="PLL-T"></td>
+<td class="algo-name">PLL-T</td>
+<td class="algo"><code class="algo">(R U R&#39; U&#39;) R&#39; F (R2 U&#39; R&#39; U&#39;) (R U R&#39; F&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-F.png" alt="PLL-F"></td>
+<td class="algo-name">PLL-F</td>
+<td class="algo"><code class="algo">(R&#39; U&#39; F&#39;) (R U R&#39; U&#39;) R&#39; F (R2 U&#39; R&#39; U&#39;) (R U R&#39; U R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-V.png" alt="PLL-V"></td>
+<td class="algo-name">PLL-V</td>
+<td class="algo"><code class="algo">(R&#39; U R&#39; U&#39;) (R D&#39; R&#39; D) (R&#39; U D&#39;) R2 U&#39; R2 D R2</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Y.png" alt="PLL-Y"></td>
+<td class="algo-name">PLL-Y</td>
+<td class="algo"><code class="algo">F (R U&#39; R&#39; U&#39;) (R U R&#39; F&#39;) (R U R&#39; U&#39;) (R&#39; F R F&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Ja.png" alt="PLL-Ja"></td>
+<td class="algo-name">PLL-Ja</td>
+<td class="algo"><code class="algo">(l2&#39; U) (l F&#39; R) U2&#39; (r&#39; U r) U2&#39;</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Jb.png" alt="PLL-Jb"></td>
+<td class="algo-name">PLL-Jb</td>
+<td class="algo"><code class="algo">(R U R&#39; F&#39;) (R U R&#39; U&#39;) R&#39; F R2 U&#39; R&#39; [U&#39;]</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Ra.png" alt="PLL-Ra"></td>
+<td class="algo-name">PLL-Ra</td>
+<td class="algo"><code class="algo">(R U&#39; R&#39; U&#39;) (R U R D) (R&#39; U&#39; R D&#39;) R&#39; U2 R&#39; U</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Rb.png" alt="PLL-Rb"></td>
+<td class="algo-name">PLL-Rb</td>
+<td class="algo"><code class="algo">(R&#39; U2 R U2&#39;) R&#39; F (R U R&#39; U&#39;) R&#39; F&#39; R2 [U&#39;])</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Na.png" alt="PLL-Na"></td>
+<td class="algo-name">PLL-Na</td>
+<td class="algo"><code class="algo">(R U R&#39; U) (R U R&#39; F&#39;) (R U R&#39; U&#39;) R&#39; F (R2 U&#39; R&#39;) U2 (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Nb.png" alt="PLL-Nb"></td>
+<td class="algo-name">PLL-Nb</td>
+<td class="algo"><code class="algo">(R&#39; U R U&#39;) (R&#39; F&#39; U&#39; F) (R U R&#39; F) (R&#39; F&#39; R U&#39; R)</code></td>
+</tr>
+<tr class="category-head"><th id="3-edges-3-corners" colspan="3">3 edges 3 corners</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Ga.png" alt="PLL-Ga"></td>
+<td class="algo-name">PLL-Ga</td>
+<td class="algo"><code class="algo">(R2 U R&#39; U) (R&#39; U&#39; R U&#39;) R2 U&#39; D (R&#39; U R) D&#39; [U]</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Gb.png" alt="PLL-Gb"></td>
+<td class="algo-name">PLL-Gb</td>
+<td class="algo"><code class="algo">(R&#39; U&#39; R U D&#39;) R2 U (R&#39; U R U&#39; R U&#39;) R2 D</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Gc.png" alt="PLL-Gc"></td>
+<td class="algo-name">PLL-Gc</td>
+<td class="algo"><code class="algo">(R2&#39; U&#39; R U&#39;) (R U R&#39; U) R2 (U D&#39;) (R U&#39; R&#39;) D [U&#39;]</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/PLL-Gd.png" alt="PLL-Gd"></td>
+<td class="algo-name">PLL-Gd</td>
+<td class="algo"><code class="algo">(R U R&#39; U&#39; D) (R2 U&#39; R U&#39;) (R&#39; U R&#39; U R2) D&#39; [U]</code></td>
+</tr>
+</table>
+</section>
+</body>
+</html>

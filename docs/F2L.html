@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"><title>F2L</title>
+<link rel="stylesheet" type="text/css" href="doc.css"></head>
+<body>
+<nav class="sidebar">
+<div class="sidebar-builder">Plot with <img class="repo-icon" src="img/icon.svg"><a href="https://github.com/wklchris/cubimg">CubImg</a></div>
+<hr>
+<p class="sidebar-title">Contents</p>
+<ul class="sidebar-list">
+<li class="current-doc">F2L</li>
+<ul class="current-doc-list">
+<li><a href="#Standard">Standard</a></li>
+<li><a href="#Edge-F-and-Corner-F">Edge F and Corner F</a></li>
+<li><a href="#Edge-F-and-Corner-R">Edge F and Corner R</a></li>
+<li><a href="#Edge-F-and-Corner-D">Edge F and Corner D</a></li>
+<li><a href="#Edge-R-and-Corner-R">Edge R and Corner R</a></li>
+<li><a href="#Edge-R-and-Corner-F">Edge R and Corner F</a></li>
+<li><a href="#Edge-R-and-Corner-D">Edge R and Corner D</a></li>
+<li><a href="#Corner-in-slot-and-Edge-F">Corner in slot and Edge F</a></li>
+<li><a href="#Corner-in-slot-and-Edge-R">Corner in slot and Edge R</a></li>
+<li><a href="#Edge-in-slot-and-correct">Edge in slot and correct</a></li>
+<li><a href="#Edge-in-slot-but-wrong">Edge in slot but wrong</a></li>
+<li><a href="#Both-edge-and-corner-in-slot">Both edge and corner in slot</a></li>
+</ul>
+<li><a href="OLL.html">OLL</a></li>
+<li><a href="PLL.html">PLL</a></li>
+</ul>
+</nav>
+</nav>
+<section class="main">
+<h1>F2L</h1>
+<table class="algo-table">
+<colgroup>
+<col class="algo-image">
+<col class="algo-name">
+<col class="algo-subcategory">
+<col class="algo">
+</colgroup>
+<tr class="category-head"><th id="Standard" colspan="4">Standard</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-1.png" alt="F2L-1"></td>
+<td class="algo-name">F2L-1</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-2.png" alt="F2L-2"></td>
+<td class="algo-name">F2L-2</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">y&#39; U&#39; (R&#39; U R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-3.png" alt="F2L-3"></td>
+<td class="algo-name">F2L-3</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">y&#39; (R&#39; U&#39; R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-4.png" alt="F2L-4"></td>
+<td class="algo-name">F2L-4</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U R&#39;)</code></td>
+</tr>
+<tr class="category-head"><th id="Edge-F-and-Corner-F" colspan="4">Edge F and Corner F</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-5.png" alt="F2L-5"></td>
+<td class="algo-name">F2L-5</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U&#39; (R U R&#39;) U2 (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-7.png" alt="F2L-7"></td>
+<td class="algo-name">F2L-7</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U&#39; (R U2&#39; R&#39;) U2 (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-15.png" alt="F2L-15"></td>
+<td class="algo-name">F2L-15</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U R&#39;) U2 (R U&#39; R&#39; U) (R U&#39; R&#39;)</code></td>
+</tr>
+<tr class="category-head"><th id="Edge-F-and-Corner-R" colspan="4">Edge F and Corner R</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-10.png" alt="F2L-10"></td>
+<td class="algo-name">F2L-10</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U&#39; (R U R&#39; U) (R U R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-12.png" alt="F2L-12"></td>
+<td class="algo-name">F2L-12</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U&#39; R&#39; U) (R U&#39; R&#39; U2) (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-14.png" alt="F2L-14"></td>
+<td class="algo-name">F2L-14</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U&#39; (R U&#39; R&#39; U) (R U R&#39;)</code></td>
+</tr>
+<tr class="category-head"><th id="Edge-F-and-Corner-D" colspan="4">Edge F and Corner D</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-19.png" alt="F2L-19"></td>
+<td class="algo-name">F2L-19</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U (R U2&#39; R&#39;) U (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-21.png" alt="F2L-21"></td>
+<td class="algo-name">F2L-21</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U2 (R U R&#39; U) (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-23.png" alt="F2L-23"></td>
+<td class="algo-name">F2L-23</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U (R U&#39; R&#39; U&#39;) (R U&#39; R&#39; U) (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-17.png" alt="F2L-17"></td>
+<td class="algo-name">F2L-17</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U2 R&#39;) U&#39; (R U R&#39;)</code></td>
+</tr>
+<tr class="category-head"><th id="Edge-R-and-Corner-R" colspan="4">Edge R and Corner R</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-8.png" alt="F2L-8"></td>
+<td class="algo-name">F2L-8</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">d (R&#39; U2 R) U2&#39; (R&#39; U R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-6.png" alt="F2L-6"></td>
+<td class="algo-name">F2L-6</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">d (R&#39; U&#39; R) U2&#39; (R&#39; U R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-16.png" alt="F2L-16"></td>
+<td class="algo-name">F2L-16</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U&#39; R&#39;) U2 y&#39; (R&#39; U&#39; R)</code></td>
+</tr>
+<tr class="category-head"><th id="Edge-R-and-Corner-F" colspan="4">Edge R and Corner F</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-9.png" alt="F2L-9"></td>
+<td class="algo-name">F2L-9</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">d (R&#39; U&#39; R U&#39;) (R&#39; U&#39; R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-13.png" alt="F2L-13"></td>
+<td class="algo-name">F2L-13</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">d (R&#39; U R U&#39;) (R&#39; U&#39; R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-11.png" alt="F2L-11"></td>
+<td class="algo-name">F2L-11</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U&#39; (R U2&#39; R&#39;) d (R&#39; U&#39; R)</code></td>
+</tr>
+<tr class="category-head"><th id="Edge-R-and-Corner-D" colspan="4">Edge R and Corner D</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-22.png" alt="F2L-22"></td>
+<td class="algo-name">F2L-22</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">y&#39; U2 (R&#39; U&#39; R) U&#39; (R&#39; U R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-20.png" alt="F2L-20"></td>
+<td class="algo-name">F2L-20</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">y&#39; U&#39; (R&#39; U2 R) U&#39; (R&#39; U R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-18.png" alt="F2L-18"></td>
+<td class="algo-name">F2L-18</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">y&#39; (R&#39; U2&#39; R) U (R&#39; U&#39; R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-24.png" alt="F2L-24"></td>
+<td class="algo-name">F2L-24</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U&#39; R U (R2&#39; F R F&#39;) (R U&#39; R&#39;)</code></td>
+</tr>
+<tr class="category-head"><th id="Corner-in-slot-and-Edge-F" colspan="4">Corner in slot and Edge F</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-30.png" alt="F2L-30"></td>
+<td class="algo-name">F2L-30</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U R&#39; U&#39;) (R U R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-27.png" alt="F2L-27"></td>
+<td class="algo-name">F2L-27</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U&#39; R&#39; U) (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-25.png" alt="F2L-25"></td>
+<td class="algo-name">F2L-25</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U&#39; (R&#39; F R F&#39;) (R U R&#39;)</code></td>
+</tr>
+<tr class="category-head"><th id="Corner-in-slot-and-Edge-R" colspan="4">Corner in slot and Edge R</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-28.png" alt="F2L-28"></td>
+<td class="algo-name">F2L-28</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">y&#39; (R&#39; U R U&#39;) (R&#39; U R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-29.png" alt="F2L-29"></td>
+<td class="algo-name">F2L-29</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">y&#39; (R&#39; U&#39; R U) (R&#39; U&#39; R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-26.png" alt="F2L-26"></td>
+<td class="algo-name">F2L-26</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U (R U&#39; R&#39;) (F R&#39; F&#39; R)</code></td>
+</tr>
+<tr class="category-head"><th id="Edge-in-slot-and-correct" colspan="4">Edge in slot and correct</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-33.png" alt="F2L-33"></td>
+<td class="algo-name">F2L-33</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U&#39; (R U&#39; R&#39;) U2 (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-34.png" alt="F2L-34"></td>
+<td class="algo-name">F2L-34</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U (R U R&#39;) U2 (R U R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-32.png" alt="F2L-32"></td>
+<td class="algo-name">F2L-32</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(U R U&#39; R&#39;) (U R U&#39; R&#39;) (U R U&#39; R&#39;)</code></td>
+</tr>
+<tr class="category-head"><th id="Edge-in-slot-but-wrong" colspan="4">Edge in slot but wrong</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-35.png" alt="F2L-35"></td>
+<td class="algo-name">F2L-35</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U2 (R U R&#39;) (F R&#39; F&#39; R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-36.png" alt="F2L-36"></td>
+<td class="algo-name">F2L-36</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U (F&#39; U&#39; F) U&#39; (R U R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-31.png" alt="F2L-31"></td>
+<td class="algo-name">F2L-31</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">U&#39; (R&#39; F R F&#39;) (R U&#39; R&#39;)</code></td>
+</tr>
+<tr class="category-head"><th id="Both-edge-and-corner-in-slot" colspan="4">Both edge and corner in slot</th></tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-39.png" alt="F2L-39"></td>
+<td class="algo-name">F2L-39</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U&#39; R&#39; U) (R U2 R&#39; U) (R U&#39; R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-38.png" alt="F2L-38"></td>
+<td class="algo-name">F2L-38</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U R&#39; U&#39;) R U2 R&#39; U&#39; (R U R&#39;)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-41.png" alt="F2L-41"></td>
+<td class="algo-name">F2L-41</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U R&#39;) U&#39; (R U&#39; R&#39;) U2 y&#39; (R&#39; U&#39; R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-40.png" alt="F2L-40"></td>
+<td class="algo-name">F2L-40</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">(R U&#39; R&#39;) U&#39; (R U&#39; R&#39;) d (R&#39; U&#39; R)</code></td>
+</tr>
+<tr>
+<td class="algo-image"><img class="algo" src="algo/F2L-37.png" alt="F2L-37"></td>
+<td class="algo-name">F2L-37</td>
+<td class="algo-subcategory">RF</td>
+<td class="algo"><code class="algo">R2&#39; U2&#39; (F R2 F&#39;) U2 (R&#39; U R&#39;)</code></td>
+</tr>
+</table>
+</section>
+</body>
+</html>
