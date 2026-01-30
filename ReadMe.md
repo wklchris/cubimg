@@ -33,7 +33,7 @@ To use CubImg, users need to:
 2. Download the CubImg binary executable from the Release page of this repository. For developers, they might also be interested in [building the project](#build-and-libraries-used).
 3. Follow the command line help (`cubimg --help`) or the project documentation to use CubImg. 
 
-Here is a snapshot of help message of CubImg v0.2:
+Here is a snapshot of help message of CubImg v0.3:
 
 ```
 cubimg.exe [OPTIONS] [algo]
